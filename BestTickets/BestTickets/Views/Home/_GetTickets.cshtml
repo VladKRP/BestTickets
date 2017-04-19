@@ -1,0 +1,104 @@
+﻿@model IEnumerable<BestTickets.Models.Vehicle>
+@{
+    var averageTicketPrice = BestTickets.Models.TicketCollectionExtension.GetAverageTicketsPrice(Model);
+}
+       
+@if (Model.Count() < 1)
+{
+    <p><h4 class="text-center ticketNotFoundColor">Билетов не найдено</h4></p>
+}
+else
+{
+        <div class="schedule hidden-xs col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 ">
+            
+                @foreach (var ticket in Model)
+                {
+                    <div class="row">
+                        <div class="ticketCard">
+
+                            <div class="text-center routeLabel"><strong>@ticket.Name <span>Маршрут:</span> @ticket.Route</strong></div>
+                            <div class="text-center ticketInfo">
+                                <div>
+                                    <span>Тип:</span> @ticket.Type
+                                </div>
+                                <div>
+                                    <span>Отправление: </span>
+                                    @ticket.DepartureTime
+                                    <span>Прибытие: </span>
+                                    @ticket.ArrivalTime
+                                </div>
+                                <div>
+                                    <span>Свободные места:</span>
+                                    @foreach (var place in ticket.Places)
+                                    {
+                                        <p>
+                                            <span class="placeType">@place.Type / </span>
+                                            <span class="placeAmount">@place.Amount / </span>
+                                            <span class="placeCost">
+                                                @if (place.Cost <= averageTicketPrice)
+                                                {
+                                                    <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label-danger"><strong>@place.Cost</strong><span>руб.</span></span>
+                                                }
+                                            </span>
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                    
+        </div>
+
+            <div class="schedule ticketsSchedule visible-xs">
+                @foreach (var ticket in Model)
+                {
+                 <div class="row">
+                     <div class="col-xs-1"></div>
+                     <div class="ticketCard col-xs-10">
+                         <div class="row">
+                         <div class="text-center routeLabel"><strong>@ticket.Name <span>Маршрут:</span> @ticket.Route</strong></div>
+                             <div class="text-center ticketInfo">
+                                 <div>
+                                     <span>Тип:</span> @ticket.Type
+                                 </div>
+                                 <div>
+                                     <span>Отправление: </span>
+                                     @ticket.DepartureTime
+                                     <span>Прибытие: </span>
+                                     @ticket.ArrivalTime
+                                 </div>
+                                 <div>
+                                     <span>Свободные места:</span>
+                                     @foreach (var place in ticket.Places)
+                                     {
+                                         <p>
+                                             <span class="placeType">@place.Type / </span>
+                                             <span class="placeAmount">@place.Amount / </span>
+                                             <span class="placeCost">
+                                                 @if (place.Cost <= averageTicketPrice)
+                                                 {
+                                                     <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
+                                                 }
+                                                 else
+                                                 {
+                                                     <span class="label-danger"><strong>@place.Cost</strong><span>руб.</span></span>
+                                                 }
+                                             </span>
+                                         </p>
+                                     }
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div>
+                 </div>  
+            }
+            </div>
+}
+
+    

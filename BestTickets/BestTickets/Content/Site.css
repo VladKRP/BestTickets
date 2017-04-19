@@ -1,0 +1,121 @@
+﻿
+body {
+    height:100%;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color:rgb(230,230,200);
+}
+
+html{
+    height:100%;
+}
+
+.page{
+    position:relative;
+    min-height:100%;
+}
+
+
+footer{
+  background-color:rgb(34,34,34);
+  color:rgb(200,200,180);
+  position: absolute;
+  left: 0;
+  bottom: -1.4em;
+  width: 100%;
+  padding:0.7em 2em 0.2em 0;
+  text-align:right;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 32px;
+}
+
+.jumbocolor{
+    background-color:rgb(85,120,115);
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.form-control{
+    background-color:rgb(230,220,180);
+}
+
+.form-control:focus{
+     background-color:rgb(230,220,200);
+     border:1.3px solid rgb(150,220,160);
+}
+
+.routeLabel{
+    border-radius:20px 20px 0 0;
+    background-color:rgba(34,34,34,0.9);
+    color:rgb(200,200,180);
+    padding:0.8em;
+}
+
+.ticketNotFoundColor{
+    color:rgb(200,100,100);
+}
+
+.schedule .ticketCard{
+    min-height:10em;
+    border:1px solid rgb(210,210,180);
+    border-radius:20px;
+    background-color:rgb(230,220,180);
+    margin-top:2em;
+}
+
+#tickets{
+    margin-top:5em;
+}
+
+.ticketCard .ticketInfo{
+    padding:1em;
+}
+
+.spaceAfterForm{
+    margin-top:10em;
+}
+
+.loadingProgress {
+  display: none;
+  position: fixed;
+  z-index:100;
+  border: 16px dotted rgb(230,230,200);
+  border-radius: 50%;
+  border-top: 16px solid rgb(250,120,120);
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  left:50%;
+  margin-top: -50px;
+  margin-left: -40px;
+  animation: spin 2s linear infinite;
+}
+
+.pageFade{
+    display:none;
+    position:fixed;
+    z-index:50;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(34,34,34,0.8);
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
