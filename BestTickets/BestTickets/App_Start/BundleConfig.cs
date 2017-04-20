@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace BestTickets
 {
@@ -27,6 +26,9 @@ namespace BestTickets
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
+            bundles.Add(new StyleBundle("~/Content/getTicketsCss").Include(
+                      "~/Content/GetTickets.css"));
+
         }
     }
 }

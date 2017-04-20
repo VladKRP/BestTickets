@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BestTickets.Extensions;
+using BestTickets.Models;
 
-namespace BestTickets.Models
+namespace BestTickets.Services
 {
     public class TicketChecker
     {

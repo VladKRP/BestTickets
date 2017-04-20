@@ -1,0 +1,18 @@
+﻿.routeLabel{
+    border-radius:20px 20px 0 0;
+    background-color:rgba(34,34,34,0.9);
+    color:rgb(200,200,180);
+    padding:0.8em;
+}
+
+.ticketCard{
+    min-height:10em;
+    border:1px solid rgb(210,210,180);
+    border-radius:20px;
+    margin-top:2em;
+    background-color:rgb(230,220,180);
+}
+
+.ticketCard .ticketInfo{
+    padding:1em;
+}

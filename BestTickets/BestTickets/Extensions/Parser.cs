@@ -5,7 +5,7 @@ using System.Net;
 using System.IO;
 using HtmlAgilityPack;
 
-namespace BestTickets.Models
+namespace BestTickets.Extensions
 {
     public class Parser
     {

@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<BestTickets.Models.Vehicle>
 @{
-    var averageTicketPrice = BestTickets.Models.TicketCollectionExtension.GetAverageTicketsPrice(Model);
+    var averageTicketPrice = BestTickets.Extensions.TicketCollectionExtension.GetAverageTicketsPrice(Model);
 }
-       
-@if (Model.Count() < 1)
-{
-    <p><h4 class="text-center ticketNotFoundColor">Билетов не найдено</h4></p>
-}
-else
-{
+
+@Styles.Render("~/Content/getTicketsCss")
+
         <div class="schedule hidden-xs col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 ">
             
                 @foreach (var ticket in Model)
@@ -35,7 +31,7 @@ else
                                             <span class="placeType">@place.Type / </span>
                                             <span class="placeAmount">@place.Amount / </span>
                                             <span class="placeCost">
-                                                @if (place.Cost <= averageTicketPrice)
+                                                @if (place.isCostLessThanAverage)
                                                 {
                                                     <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                 }
@@ -54,7 +50,7 @@ else
                     
         </div>
 
-            <div class="schedule ticketsSchedule visible-xs">
+            <div class="schedule visible-xs">
                 @foreach (var ticket in Model)
                 {
                  <div class="row">
@@ -80,7 +76,7 @@ else
                                              <span class="placeType">@place.Type / </span>
                                              <span class="placeAmount">@place.Amount / </span>
                                              <span class="placeCost">
-                                                 @if (place.Cost <= averageTicketPrice)
+                                                 @if (place.isCostLessThanAverage)
                                                  {
                                                      <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                  }
@@ -98,7 +94,4 @@ else
                      </div>
                  </div>  
             }
-            </div>
-}
-
-    
+            </div> 
