@@ -1,10 +1,11 @@
 ﻿using System.Data.Entity;
 using BestTickets.Models;
 
-namespace BestTickets.Database
+namespace BestTickets.Infrastructure
 {
     public class RouteRequestContext:DbContext
     {
-        DbSet<RouteRequest> RouteRequests { get; set; }
+       public RouteRequestContext() : base("name=BestTicketsDB") { }
+       public DbSet<RouteRequest> RouteRequests { get; set; }
     }
 }
