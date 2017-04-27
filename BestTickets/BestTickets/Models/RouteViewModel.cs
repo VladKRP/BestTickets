@@ -15,6 +15,15 @@ namespace BestTickets.Models
         [Display(Name = "Дата")]
         public string Date { get; set; }
 
+        public RouteViewModel() { }
+
+        public RouteViewModel(string departurePlace, string arrivalPlace, string date)
+        {
+            DeparturePlace = departurePlace;
+            ArrivalPlace = arrivalPlace;
+            Date = date;
+        }
+
         public string SetCurrentDate()
         {
             var date = DateTime.Today;

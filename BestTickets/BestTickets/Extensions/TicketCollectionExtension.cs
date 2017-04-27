@@ -24,9 +24,7 @@ namespace BestTickets.Extensions
         {
             foreach (var ticket in tickets)
             {
-
-                var places = ticket.Places;
-                foreach (var place in places)
+                foreach (var place in ticket.Places)
                 {
                     if (place.Cost <= averagePrice)
                         place.isCostLessThanAverage = true;

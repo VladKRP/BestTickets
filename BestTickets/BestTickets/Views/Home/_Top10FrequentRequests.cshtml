@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BestTickets.Models.RouteRequest>
+<h2>Наиболее частые запросы</h2>
+
+@foreach(var entity in Model)
+{
+    <div>
+        <a href="@Url.Action("_GetTickets")"><span>entity.Route.DeparturePlace</span> - <span>entity.Route.ArrivalPlace</span></a>
+    </div>
+}
