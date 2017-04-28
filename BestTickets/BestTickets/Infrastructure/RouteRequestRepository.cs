@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BestTickets.Infrastructure
 {
-    public class RouteRequestRepository:IRepository
+    public class RouteRequestRepository:IRepository<RouteRequest>
     {
         private RouteRequestContext context;
 

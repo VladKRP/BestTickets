@@ -10,9 +10,9 @@ namespace BestTickets.Controllers
     public class HomeController : Controller
     {
 
-        private IRepository context;
+        IRepository<RouteRequest> context;
 
-        public HomeController(IRepository repository)
+        public HomeController(IRepository<RouteRequest> repository)
         {
             context = repository;
         }
