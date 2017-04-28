@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BestTickets.Infrastructure
 {
-    public interface IRouteRequestRepository
+    public interface IRepository
     {
         IEnumerable<RouteRequest> GetAll();
         RouteRequest FindById(int id);

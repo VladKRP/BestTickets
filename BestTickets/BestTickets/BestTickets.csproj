@@ -166,8 +166,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Extensions\Parser.cs" />
-    <Compile Include="Infrastructure\IRouteRequestRepository.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\RouteRequestRepository.cs" />
+    <Compile Include="Migrations\201704281845432_Initial.cs" />
+    <Compile Include="Migrations\201704281845432_Initial.Designer.cs">
+      <DependentUpon>201704281845432_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RouteRequest.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
     <Compile Include="Services\TicketChecker.cs" />
@@ -229,6 +234,11 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704281845432_Initial.resx">
+      <DependentUpon>201704281845432_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

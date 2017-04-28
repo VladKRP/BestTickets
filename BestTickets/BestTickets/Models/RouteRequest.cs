@@ -5,6 +5,6 @@ namespace BestTickets.Models
     {
         public int Id { get; set; }
         public RouteViewModel Route { get; set; }
-        public int RequestsCount { get; set; } = 0;
+        public int RequestsCount { get; set; } = 1;
     }
 }

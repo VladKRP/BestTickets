@@ -10,9 +10,9 @@ namespace BestTickets.Controllers
     public class HomeController : Controller
     {
 
-        private IRouteRequestRepository context;
+        private IRepository context;
 
-        public HomeController(IRouteRequestRepository repository)
+        public HomeController(IRepository repository)
         {
             context = repository;
         }
@@ -40,13 +40,13 @@ namespace BestTickets.Controllers
             else
             {
                 partialViewName = "_GetTickets";
-                //UpdateRouteRequestsCount(route);
+                UpdateRouteRequestsCount(route);
             }
                 
             return PartialView(partialViewName, groupedTickets);
         }
 
-        //
+        
         public ActionResult GetTop10MostFrequentRequests()
         {
             var top10Requests = context.GetAll().OrderByDescending(x => x.RequestsCount).Take(10);
@@ -60,10 +60,10 @@ namespace BestTickets.Controllers
             {
                 routeRequest.RequestsCount++;
                 context.Update(routeRequest);
-                context.Save();
             }
-            else
+            else    
                 context.Create(new RouteRequest() { Route = route });
+            context.Save();
         }
 
     }
