@@ -49,7 +49,7 @@ namespace BestTickets.Controllers
         
         public ActionResult GetTop10MostFrequentRequests()
         {
-            var top10Requests = context.GetAll().OrderByDescending(x => x.RequestsCount).Take(10);
+            var top10Requests = context.GetAll().OrderByDescending(x => x.RequestsCount).Take(10).ToList();
             return PartialView("_Top10FrequentRequests",top10Requests);
         }
 
