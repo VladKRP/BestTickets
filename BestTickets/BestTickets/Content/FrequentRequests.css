@@ -4,4 +4,10 @@
 
 .mostFrequentRoute a{
     color:rgb(85,120,115);
+    font-weight:600;
+    text-decoration:none;
+}
+
+.mostFrequentRoute a:hover{
+  color:rgb(45,80,75);
 }

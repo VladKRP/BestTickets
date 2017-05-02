@@ -23,25 +23,25 @@ namespace BestTickets.Tests.Controller.Home
             result = controller.GetTickets(route) as PartialViewResult;
         }
 
-        [TestMethod]
-        public void GetTicketsViewModelIsNotNull()
-        {
-            Assert.IsNotNull(result.Model);
-        }
+        //[TestMethod]
+        //public void GetTicketsViewModelIsNotNull()
+        //{
+        //    Assert.IsNotNull(result.Model);
+        //}
 
-        [TestMethod]
-        public void GetTicketsReturnPartialTicketsNotFoundViewIfModelEmpty()
-        {
-            var unknownRoute = new RouteViewModel("Nothing", "Nothing", route.SetCurrentDate());
-            PartialViewResult unknownRouteResult = controller.GetTickets(unknownRoute) as PartialViewResult;
-            Assert.AreEqual("_TicketsNotFound", unknownRouteResult.ViewName);
-        }
+        //[TestMethod]
+        //public void GetTicketsReturnPartialTicketsNotFoundViewIfModelEmpty()
+        //{
+        //    var unknownRoute = new RouteViewModel("Nothing", "Nothing", route.SetCurrentDate());
+        //    PartialViewResult unknownRouteResult = controller.GetTickets(unknownRoute) as PartialViewResult;
+        //    Assert.AreEqual("_TicketsNotFound", unknownRouteResult.ViewName);
+        //}
 
-        [TestMethod]
-        public void GetTicketsReturnGetTicketsPartialViewIfModelNotEmpty()
-        {
-            Assert.AreEqual("_GetTickets", result.ViewName);
-        }
+        //[TestMethod]
+        //public void GetTicketsReturnGetTicketsPartialViewIfModelNotEmpty()
+        //{
+        //    Assert.AreEqual("_GetTickets", result.ViewName);
+        //}
 
     }
 }
