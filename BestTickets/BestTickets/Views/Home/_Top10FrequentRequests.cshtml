@@ -1,8 +1,13 @@
 ﻿@model IEnumerable<BestTickets.Models.RouteRequest>
 
+<br />
+<h4>Наиболее частые маршруты</h4>
+<br />
 @foreach(var entity in Model)
 {
-    <div>
-        <a href="@Url.Action("_GetTickets")"><span>entity.Route.DeparturePlace</span> - <span>entity.Route.ArrivalPlace</span></a>
-    </div>
+    <span class="mostFrequentRoute">
+        <a href="@Url.Action("Index", entity.Route)"><span>@entity.Route.DeparturePlace</span> - <span>@entity.Route.ArrivalPlace</span></a>
+    </span>
 }
+
+@Styles.Render("~/Content/FrequentRequestsCss")

@@ -7,13 +7,13 @@ namespace BestTickets.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class InitializeDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704281845432_Initial"; }
+            get { return "201705021317566_InitializeDB"; }
         }
         
         string IMigrationMetadata.Source

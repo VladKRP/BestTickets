@@ -34,8 +34,6 @@ footer{
     padding-bottom: 32px;
 }
 
-
-
 .jumbocolor{
     background-color:rgb(85,120,115);
 }
@@ -53,7 +51,6 @@ footer{
      border:1.3px solid rgb(150,220,160);
 }
 
-
 #tickets{
     margin-top:5em;
 }
@@ -61,7 +58,6 @@ footer{
 .ticketNotFoundColor{
     color:rgb(200,100,100);
 }
-
 
 .loadingProgress {
   display: none;
@@ -90,6 +86,7 @@ footer{
     background-color:rgba(34,34,34,0.8);
 }
 
+
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
@@ -99,4 +96,5 @@ footer{
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 

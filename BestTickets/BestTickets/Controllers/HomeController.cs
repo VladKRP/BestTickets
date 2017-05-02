@@ -22,9 +22,12 @@ namespace BestTickets.Controllers
             context = new RouteRequestRepository();
         }  
 
-        public ActionResult Index()
+        public ActionResult Index(RouteViewModel route = null)
         {
-             return View("Index");
+            if (route == null)
+                return View("Index");
+            else
+                return View("Index", route);
         }
 
         public ActionResult GetTickets(RouteViewModel route)
@@ -33,8 +36,8 @@ namespace BestTickets.Controllers
                 route.Date = route.SetCurrentDate();
 
             var tickets = TicketChecker.FindTickets(route).OrderTicketsPriceByDesc();
-            var averagePrice = tickets.GetAverageTicketsPrice();
-            var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
+            //var averagePrice = tickets.GetAverageTicketsPrice();
+            //var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
             string partialViewName;
             if (tickets.Count() == 0) partialViewName = "_TicketsNotFound";
             else
@@ -43,7 +46,7 @@ namespace BestTickets.Controllers
                 UpdateRouteRequestsCount(route);
             }
                 
-            return PartialView(partialViewName, groupedTickets);
+            return PartialView(partialViewName, tickets);
         }
 
         

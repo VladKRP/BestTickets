@@ -31,7 +31,7 @@
                                             <span class="placeType">@place.Type / </span>
                                             <span class="placeAmount">@place.Amount / </span>
                                             <span class="placeCost">
-                                                @if (place.isCostLessThanAverage)
+                                                @if (place.Cost <= averageTicketPrice)
                                                 {
                                                     <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                 }
@@ -76,7 +76,7 @@
                                              <span class="placeType">@place.Type / </span>
                                              <span class="placeAmount">@place.Amount / </span>
                                              <span class="placeCost">
-                                                 @if (place.isCostLessThanAverage)
+                                                 @if (place.Cost <= averageTicketPrice)
                                                  {
                                                      <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                  }

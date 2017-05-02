@@ -6,10 +6,7 @@ namespace BestTickets.Infrastructure
 {
     public class RouteRequestContext:DbContext
     {
-        public RouteRequestContext() : base("BestTicketsConnection")
-        {
-            Database.SetInitializer<RouteRequestContext>(new CreateDatabaseIfNotExists<RouteRequestContext>());
-        }
+        public RouteRequestContext() : base("BestTicketsDBConnection"){}
 
         public DbSet<RouteRequest> RouteRequests { get; set; }
 

@@ -28,6 +28,8 @@ namespace BestTickets
                       "~/Content/Site.css"));
             bundles.Add(new StyleBundle("~/Content/getTicketsCss").Include(
                       "~/Content/GetTickets.css"));
+            bundles.Add(new StyleBundle("~/Content/FrequentRequestsCss").Include(
+                      "~/Content/FrequentRequests.css"));
 
         }
     }

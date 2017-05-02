@@ -11,14 +11,13 @@ namespace BestTickets.Tests.Controller.Home
     [TestClass]
     public class GetTop10FrequentRequestsTest
     {
-        //private Mock mock;
         private HomeController controller;
         private PartialViewResult result;
 
         [TestInitialize]
         public void InitialSetups()
         {
-            var mock = new Mock<IRouteRequestRepository>();
+            var mock = new Mock<IRepository<RouteRequest>>();
             mock.Setup(x => x.GetAll()).Returns(new List<RouteRequest>());
             controller = new HomeController(mock.Object);
             result = controller.GetTop10MostFrequentRequests() as PartialViewResult;

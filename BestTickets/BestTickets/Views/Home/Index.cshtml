@@ -9,10 +9,10 @@
      <h3>Выбор лучших билетов</h3>
 </div>
 
-<div>
+<div class="row">
     <h3 class="text-center">Выбор маршрута</h3>
 </div>
-<div class="hidden-xs">
+<div class="hidden-xs row">
     @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace, LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
     {
             <div class="text-center">
@@ -38,7 +38,7 @@
             </div>      
     } 
 </div>
-<div class="visible-xs">
+<div class="visible-xs row">
     @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace , LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
     {
         <div class="row">
@@ -83,8 +83,8 @@
     
 </div>
 
-<div class="top10Routes">
-    @Html.Action("GetTop10MostFrequentRequests");
+<div class="top10Routes row text-center">
+        @Html.Action("GetTop10MostFrequentRequests")
 </div>
 
 <div id="loader" class="loadingProgress"></div>
