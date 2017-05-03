@@ -43,8 +43,7 @@ namespace BestTickets.Infrastructure
         public void Delete(int id)
         {
             RouteRequest routeRequest = context.RouteRequests.Find(id);
-            if (routeRequest != null)
-                context.RouteRequests.Remove(routeRequest);
+            context.RouteRequests?.Remove(routeRequest);
         }
 
         public void Save()

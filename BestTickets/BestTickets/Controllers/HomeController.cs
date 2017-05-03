@@ -24,10 +24,7 @@ namespace BestTickets.Controllers
 
         public ActionResult Index(RouteViewModel route = null)
         {
-            if (route == null)
-                return View("Index");
-            else
-                return View("Index", route);
+            return View("Index", route);
         }
 
         public ActionResult GetTickets(RouteViewModel route)
@@ -43,7 +40,7 @@ namespace BestTickets.Controllers
             else
             {
                 partialViewName = "_GetTickets";
-                UpdateRouteRequestsCount(route);
+                UpdateOrCreateRouteIfNotExist(route);
             }
                 
             return PartialView(partialViewName, tickets);
@@ -56,7 +53,7 @@ namespace BestTickets.Controllers
             return PartialView("_Top10FrequentRequests",top10Requests);
         }
 
-        private void UpdateRouteRequestsCount(RouteViewModel route)
+        private void UpdateOrCreateRouteIfNotExist(RouteViewModel route)
         {
             var routeRequest = context.FindByRoute(route);
             if (routeRequest != null)
