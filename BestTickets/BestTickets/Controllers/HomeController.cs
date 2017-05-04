@@ -41,7 +41,7 @@ namespace BestTickets.Controllers
             else
             {
                 partialViewName = "_GetTickets";
-                //UpdateOrCreateRouteIfNotExist(route);
+                UpdateOrCreateRouteIfNotExist(route);
             }
                 
             return PartialView(partialViewName, groupedTickets);
