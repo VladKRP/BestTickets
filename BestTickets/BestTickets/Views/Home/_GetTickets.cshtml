@@ -2,6 +2,7 @@
 
 @Styles.Render("~/Content/getTicketsCss")
 
+<h4 class="text-center headerText">Найденные билеты</h4>
         <div class="schedule hidden-xs col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 ">
                 @foreach (var ticket in Model)
                 {
@@ -69,7 +70,7 @@
                                      @foreach (var place in ticket.Places)
                                      {
                                          <p>
-                                             <span class="placeType">@place.Type / </span>
+                                             <span class="placeType">@place.Type /</span>
                                              <span class="placeAmount">@place.Amount / </span>
                                              <span class="placeCost">
                                                  @if (place.isCostLessThanAverage)

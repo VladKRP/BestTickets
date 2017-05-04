@@ -1,5 +1,12 @@
 ﻿.mostFrequentRoute{
-    margin:1.5em;
+    display:inline-block;
+    margin:0.5em;
+    padding:0.5em;
+}
+
+.mostFrequentRoute:hover{
+    background-color:rgba(85,120,115,0.1);
+
 }
 
 .mostFrequentRoute a{
@@ -8,6 +15,3 @@
     text-decoration:none;
 }
 
-.mostFrequentRoute a:hover{
-  color:rgb(45,80,75);
-}
