@@ -20,17 +20,19 @@ namespace BestTickets.Extensions
             return tickets.OrderBy(x => x.Places.Min());
         }
 
-        //public static IEnumerable<Vehicle> GroupTicketsByAveragePrice(this IEnumerable<Vehicle> tickets, double averagePrice)
-        //{
-        //    foreach (var ticket in tickets)
-        //    {
-        //        foreach (var place in ticket.Places)
-        //        {
-        //            if (place.Cost <= averagePrice)
-        //                place.isCostLessThanAverage = true;
-        //        }
-        //        yield return ticket;
-        //    }
-        //}
+        public static IEnumerable<Vehicle> GroupTicketsByAveragePrice(this IEnumerable<Vehicle> tickets, double averagePrice)
+        {
+            foreach (var ticket in tickets)
+            {
+                var places = ticket.Places.ToList();
+                foreach (var place in places)
+                {
+                    if (place.Cost <= averagePrice)
+                        place.isCostLessThanAverage = true;
+                }
+                ticket.Places = places;
+                yield return ticket;
+            }
+        }
     }
 }

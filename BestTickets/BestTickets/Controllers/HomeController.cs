@@ -33,20 +33,20 @@ namespace BestTickets.Controllers
                 route.Date = route.SetCurrentDate();
 
             var tickets = TicketChecker.FindTickets(route).OrderTicketsPriceByDesc();
-            //var averagePrice = tickets.GetAverageTicketsPrice();
-            //var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
+            var averagePrice = tickets.GetAverageTicketsPrice();
+            var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
+
             string partialViewName;
             if (tickets.Count() == 0) partialViewName = "_TicketsNotFound";
             else
             {
                 partialViewName = "_GetTickets";
-                UpdateOrCreateRouteIfNotExist(route);
+                //UpdateOrCreateRouteIfNotExist(route);
             }
                 
-            return PartialView(partialViewName, tickets);
+            return PartialView(partialViewName, groupedTickets);
         }
-
-        
+ 
         public ActionResult GetTop10MostFrequentRequests()
         {
             var top10Requests = context.GetAll().OrderByDescending(x => x.RequestsCount).Take(10).ToList();

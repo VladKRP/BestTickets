@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<BestTickets.Models.Vehicle>
-@{
-    var averageTicketPrice = BestTickets.Extensions.TicketCollectionExtension.GetAverageTicketsPrice(Model);
-}
 
 @Styles.Render("~/Content/getTicketsCss")
 
@@ -30,7 +27,7 @@
                                             <span class="placeType">@place.Type / </span>
                                             <span class="placeAmount">@place.Amount / </span>
                                             <span class="placeCost">
-                                                @if (place.Cost <= averageTicketPrice)
+                                                @if (place.isCostLessThanAverage)
                                                 {
                                                     <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                 }
@@ -75,7 +72,7 @@
                                              <span class="placeType">@place.Type / </span>
                                              <span class="placeAmount">@place.Amount / </span>
                                              <span class="placeCost">
-                                                 @if (place.Cost <= averageTicketPrice)
+                                                 @if (place.isCostLessThanAverage)
                                                  {
                                                      <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
                                                  }

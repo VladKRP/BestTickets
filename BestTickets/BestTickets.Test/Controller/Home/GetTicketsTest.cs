@@ -2,6 +2,9 @@
 using BestTickets.Controllers;
 using System.Web.Mvc;
 using BestTickets.Models;
+using Moq;
+using BestTickets.Infrastructure;
+using System.Collections.Generic;
 
 namespace BestTickets.Tests.Controller.Home
 {
@@ -15,7 +18,9 @@ namespace BestTickets.Tests.Controller.Home
         [TestInitialize]
         public void InitialSetups()
         {
-            controller = new HomeController();
+            var mock = new Mock<IRepository<RouteRequest>>();
+            mock.Setup(x => x.GetAll()).Returns(new List<RouteRequest>());
+            controller = new HomeController(mock.Object);
             route = new RouteViewModel();
             route.DeparturePlace = "Минск";
             route.ArrivalPlace = "Молодечно";
@@ -23,25 +28,25 @@ namespace BestTickets.Tests.Controller.Home
             result = controller.GetTickets(route) as PartialViewResult;
         }
 
-        //[TestMethod]
-        //public void GetTicketsViewModelIsNotNull()
-        //{
-        //    Assert.IsNotNull(result.Model);
-        //}
+        [TestMethod]
+        public void GetTicketsViewModelIsNotNull()
+        {
+            Assert.IsNotNull(result.Model);
+        }
 
-        //[TestMethod]
-        //public void GetTicketsReturnPartialTicketsNotFoundViewIfModelEmpty()
-        //{
-        //    var unknownRoute = new RouteViewModel("Nothing", "Nothing", route.SetCurrentDate());
-        //    PartialViewResult unknownRouteResult = controller.GetTickets(unknownRoute) as PartialViewResult;
-        //    Assert.AreEqual("_TicketsNotFound", unknownRouteResult.ViewName);
-        //}
+        [TestMethod]
+        public void GetTicketsReturnPartialTicketsNotFoundViewIfModelEmpty()
+        {
+            var unknownRoute = new RouteViewModel("Nothing", "Nothing", route.SetCurrentDate());
+            PartialViewResult unknownRouteResult = controller.GetTickets(unknownRoute) as PartialViewResult;
+            Assert.AreEqual("_TicketsNotFound", unknownRouteResult.ViewName);
+        }
 
-        //[TestMethod]
-        //public void GetTicketsReturnGetTicketsPartialViewIfModelNotEmpty()
-        //{
-        //    Assert.AreEqual("_GetTickets", result.ViewName);
-        //}
+        [TestMethod]
+        public void GetTicketsReturnGetTicketsPartialViewIfModelNotEmpty()
+        {
+            Assert.AreEqual("_GetTickets", result.ViewName);
+        }
 
     }
 }

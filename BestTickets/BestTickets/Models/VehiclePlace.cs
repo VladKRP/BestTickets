@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BestTickets.Models
 {
-    public class VehiclePlace:IComparable<VehiclePlace>
+    public class VehiclePlace: IComparable<VehiclePlace>
     {
         public string Type { get; set; }
         public string Amount { get; set; }
