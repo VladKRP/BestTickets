@@ -17,6 +17,11 @@ namespace BestTickets.Infrastructure
         {
             return context.RouteRequests.Select(x => x);
         }
+
+        public IQueryable<RouteRequest> GetTop10()
+        {
+            return context.RouteRequests.OrderByDescending(x => x.RequestsCount).Take(10);
+        }
         
         public RouteRequest FindById(int id)
         {
