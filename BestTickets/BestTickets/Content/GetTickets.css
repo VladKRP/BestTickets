@@ -1,19 +1,24 @@
-﻿.routeLabel{
-    border-radius:20px 20px 0 0;
-    background-color:rgba(34,34,34,0.9);
-    color:rgb(200,200,180);
-    padding:0.8em;
+﻿
+.schedule{
+    display:flex;
+    flex-wrap:wrap;
 }
 
 .ticketCard{
-    min-height:10em;
-    border:1px solid rgb(210,210,180);
-    border-radius:20px;
-    margin-top:2em;
-    background-color:rgb(230,220,180);
+    background:rgb(240,260,250);
+    border:1px solid black;
+    border-right:2px solid rgb(34,34,34);
+    border-bottom:3px solid rgb(34,34,34);
+    margin-bottom:0.2em;
 }
 
-.ticketCard .ticketInfo{
+
+.ticketCard-sm{
+    margin-left:0.2em;
+    display:inline-block;
     padding:1em;
+    flex-basis:16.15em;
+    flex-grow: 1;
+    max-height:40em;
 }
 

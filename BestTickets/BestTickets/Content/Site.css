@@ -55,25 +55,18 @@ footer{
      border:1.3px solid rgb(150,220,160);
 }
 
-#tickets{
-    margin-top:5em;
-}
-
-
-/*.headerText{
-    background-color:rgba(34,34,34,0.9);
-    color:rgb(234,224,234);
-    padding:1em;
-    font-weight:600;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size:1em;
-    
-}
-
-.marginSub{
+/*.marginSub{
     margin-top:-2.2em;
-}*/
+}
 
+.headerText{
+    display:inline-block;
+    padding:0.5em;
+    background:rgb(240,260,250);
+    border:1px solid black;
+    border-right:2px solid rgb(34,34,34);
+    border-bottom:3px solid rgb(34,34,34);
+}*/
 
 .ticketNotFoundColor{
     color:rgb(200,100,100);
