@@ -1,0 +1,27 @@
+﻿
+.schedule{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.ticketCard{
+    background:rgb(255,255,255);
+    border:1px solid rgb(230, 230, 220);
+    margin-bottom:0.2em;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.ticketCard:hover{
+    border:1.3px solid rgb(60,90,90);
+}
+
+
+.ticketCard-sm{
+    margin-left:0.2em;
+    display:inline-block;
+    padding:1em;
+    flex-basis:16.15em;
+    flex-grow: 1;
+    max-height:40em;
+}
+
