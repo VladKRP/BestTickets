@@ -82,8 +82,10 @@
     
 </div>
 
-<div class="top10Routes row text-center">
-        @Html.Action("GetTop10MostFrequentRequests")
+<div id="topRoutes" class="top10Routes row text-center">
+    <br />
+    <h4 class="headerText text-center">Наиболее частые маршруты</h4>
+   @*     @Html.Action("GetTop10MostFrequentRequests")*@
 </div>
 
 <div id="loader" class="loadingProgress"></div>
@@ -94,17 +96,34 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/ajax")
+    <script>
+        function onBegin() {
+            $(".pageFade").show();
+            $(".loadingProgress").show();
+        }
+
+        function onComplete() {
+            $(".pageFade").hide();
+            $(".loadingProgress").hide();
+        }
+
+    </script>
+    <script>
+        var uri = 'api/tickets';
+
+        $(document).ready(function () {
+            $.getJSON(uri)
+                .done(function (data) {
+                    $.each(data, function (key, item) {
+                        $("<span>").addClass("mostFrequentRoute").add("<a>", { text: formatItem(item) }).attr("href", "/?DeparturePlace=" + item.Route.DeparturePlace +"%ArrivalPlace"+ item.Route.ArrivalPlace).appendTo("#topRoutes");
+                        //$('<span>').appendTo($('#topRoutes')).addClass("mostFrequentRoute");
+                    });
+                });
+        });
+
+        function formatItem(item) {
+            return item.Route.DeparturePlace + " - " + item.Route.ArrivalPlace;
+        }
+    </script>
 }
 
-<script>
-    function onBegin() {
-        $(".pageFade").show();
-        $(".loadingProgress").show();  
-    }
-
-    function onComplete() {
-        $(".pageFade").hide();
-        $(".loadingProgress").hide();
-    }
-
-</script>

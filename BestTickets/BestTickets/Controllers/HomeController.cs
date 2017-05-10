@@ -20,7 +20,7 @@ namespace BestTickets.Controllers
         public HomeController()
         {
             context = new RouteRequestRepository();
-        }  
+        }
 
         public ActionResult Index(RouteViewModel route = null)
         {
@@ -41,30 +41,30 @@ namespace BestTickets.Controllers
             else
             {
                 partialViewName = "_GetTickets";
-                UpdateOrCreateRouteIfNotExist(route);
+                //UpdateOrCreateRouteIfNotExist(route);
             }
                 
             return PartialView(partialViewName, groupedTickets);
         }
- 
-        public ActionResult GetTop10MostFrequentRequests()
-        {
-            var top10Requests = context.GetTop10().AsEnumerable();
-            return PartialView("_Top10FrequentRequests",top10Requests);
-        }
 
-        private void UpdateOrCreateRouteIfNotExist(RouteViewModel route)
-        {
-            var routeRequest = context.FindByRoute(route);
-            if (routeRequest != null)
-            {
-                routeRequest.RequestsCount++;
-                context.Update(routeRequest);
-            }
-            else    
-                context.Create(new RouteRequest() { Route = route });
-            context.Save();
-        }
+        //public ActionResult GetTop10MostFrequentRequests()
+        //{
+        //    var top10Requests = context.GetTop10().AsEnumerable();
+        //    return PartialView("_Top10FrequentRequests", top10Requests);
+        //}
+
+        //private void UpdateOrCreateRouteIfNotExist(RouteViewModel route)
+        //{
+        //    var routeRequest = context.FindByRoute(route);
+        //    if (routeRequest != null)
+        //    {
+        //        routeRequest.RequestsCount++;
+        //        context.Update(routeRequest);
+        //    }
+        //    else    
+        //        context.Create(new RouteRequest() { Route = route });
+        //    context.Save();
+        //}
 
     }
 }

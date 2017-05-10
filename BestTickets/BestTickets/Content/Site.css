@@ -15,7 +15,6 @@ html{
     min-height:100%;
 }
 
-
 footer{
   background-color:rgb(34,34,34);
   color:rgb(200,200,180);
@@ -26,6 +25,47 @@ footer{
   padding:0.7em 2em 0.2em 0;
   text-align:right;
 }
+
+.mostFrequentRoute{
+    display:inline-block;
+    margin:0.5em;
+    padding:0.5em;
+}
+
+.schedule{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.ticketCard{
+    background:rgb(240,260,250);
+    border:1px solid black;
+    border-right:2px solid rgb(34,34,34);
+    border-bottom:3px solid rgb(34,34,34);
+    margin-bottom:0.2em;
+}
+
+
+.ticketCard-sm{
+    margin-left:0.2em;
+    display:inline-block;
+    padding:1em;
+    flex-basis:16.15em;
+    flex-grow: 1;
+    max-height:40em;
+}
+
+.mostFrequentRoute:hover{
+    background-color:rgba(85,120,115,0.1);
+
+}
+
+.mostFrequentRoute a{
+    color:rgb(85,120,115);
+    font-weight:600;
+    text-decoration:none;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
