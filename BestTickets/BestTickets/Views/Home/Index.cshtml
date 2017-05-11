@@ -11,8 +11,6 @@
     </div>
 </div>
 
-
-
 <div class="row text-center">
     <h4 class="text-center headerText marginSub">Выберите маршрут</h4>
 </div>
@@ -23,17 +21,17 @@
 </div>
 
 <div class="hidden-xs row">
-    @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace, LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
+    @using (Ajax.BeginForm("api/tickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace, LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
     {
-              
+
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-inline col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
                     <div class="form-group col-sm-3">
-                        @Html.TextBoxFor(x => x.DeparturePlace, new { @class = "form-control", @placeholder = "Отправление" })
+                        @Html.TextBoxFor(x => x.DeparturePlace, new { @class = "form-control departurePlace", @placeholder = "Отправление" })
                     </div>
                     <div class="form-group spaceLeft  col-sm-3">
-                        @Html.TextBoxFor(x => x.ArrivalPlace, new { @class = "form-control", @placeholder = "Прибытие" })
+                        @Html.TextBoxFor(x => x.ArrivalPlace, new { @class = "form-control arrivalPlace", @placeholder = "Прибытие" })
                     </div>
                     <div class="form-group spaceLeft col-sm-3">
                         <input type="date" class="form-control" name="Date" />
@@ -45,7 +43,7 @@
     } 
 </div>
 <div class="visible-xs row">
-    @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace , LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
+    @using (Ajax.BeginForm("api/tickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace , LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete"}))
     {
 
          @Html.AntiForgeryToken()
@@ -55,13 +53,13 @@
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="form-group col-xs-10">
-                    @Html.TextBoxFor(x => x.DeparturePlace, new { @class = "form-control", @placeholder = "Отправление" })
+                    @Html.TextBoxFor(x => x.DeparturePlace, new { @class = "form-control departurePlace", @placeholder = "Отправление" })
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="form-group col-xs-10">
-                    @Html.TextBoxFor(x => x.ArrivalPlace, new { @class = "form-control", @placeholder = "Прибытие" })
+                    @Html.TextBoxFor(x => x.ArrivalPlace, new { @class = "form-control arrivalPlace", @placeholder = "Прибытие" })
                 </div>
             </div>
             <div class="row">
@@ -85,11 +83,100 @@
 <div id="topRoutes" class="top10Routes row text-center">
     <br />
     <h4 class="headerText text-center">Наиболее частые маршруты</h4>
-   @*     @Html.Action("GetTop10MostFrequentRequests")*@
 </div>
 
 <div id="loader" class="loadingProgress"></div>
 <div id="tickets" class="row" >
+    <div class="row text-center">
+        <h4 class="text-center headerText">Найденные билеты</h4>
+    </div>
+    @*<div class="schedule hidden-xs col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8 ">
+        @foreach (var ticket in Model)
+        {
+            <div class="ticketCard-sm ticketCard">
+
+                <div class="text-center routeLabel"><strong>@ticket.Name <span>Маршрут:</span> @ticket.Route</strong></div>
+                <div class="text-center ticketInfo">
+                    <div>
+                        <span>Тип:</span> @ticket.Type
+                    </div>
+                    <div>
+                        <span>Отправление: </span>
+                        @ticket.DepartureTime
+                        <span>Прибытие: </span>
+                        @ticket.ArrivalTime
+                    </div>
+                    <div>
+                        <span>Свободные места:</span>
+                        @foreach (var place in ticket.Places)
+                        {
+                            <p>
+                                <span class="placeType">@place.Type / </span>
+                                <span class="placeAmount">@place.Amount / </span>
+                                <span class="placeCost">
+                                    @if (place.isCostLessThanAverage)
+                                    {
+                                        <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label-danger"><strong>@place.Cost</strong><span>руб.</span></span>
+                                    }
+                                </span>
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="schedule visible-xs">
+        @foreach (var ticket in Model)
+        {
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="ticketCard-xs ticketCard col-xs-10">
+                    <div class="row">
+                        <div class="text-center routeLabel"><strong>@ticket.Name <span>Маршрут:</span> @ticket.Route</strong></div>
+                        <div class="text-center ticketInfo">
+                            <div>
+                                <span>Тип:</span> @ticket.Type
+                            </div>
+                            <div>
+                                <span>Отправление: </span>
+                                @ticket.DepartureTime
+                                <span>Прибытие: </span>
+                                @ticket.ArrivalTime
+                            </div>
+                            <div>
+                                <span>Свободные места:</span>
+                                @foreach (var place in ticket.Places)
+                                {
+                                    <p>
+                                        <span class="placeType">@place.Type /</span>
+                                        <span class="placeAmount">@place.Amount / </span>
+                                        <span class="placeCost">
+                                            @if (place.isCostLessThanAverage)
+                                            {
+                                                <span class="label-success"><strong>@place.Cost</strong><span>руб.</span></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label-danger"><strong>@place.Cost</strong><span>руб.</span></span>
+                                            }
+                                        </span>
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>*@
     
 </div>
 
@@ -105,25 +192,52 @@
         function onComplete() {
             $(".pageFade").hide();
             $(".loadingProgress").hide();
+            loadTickets();
         }
 
-    </script>
-    <script>
-        var uri = 'api/tickets';
+        var ticketsUri = "api/tickets";
+        function loadTickets() {
+            $.getJSON(ticketsUri)
+               .done(function (data) {
+                   $.each(data, function (key, item) {
+                       $("#tickets").empty();
+                       var tick = document.createElement("span");
+                       tick.innerText = item.Name;
+                       $(tick).appendTo("#tickets");
+                   });
+               });
+        }
+
+        var routesUri = 'api/routes';
 
         $(document).ready(function () {
-            $.getJSON(uri)
+            $.getJSON(routesUri)
                 .done(function (data) {
                     $.each(data, function (key, item) {
-                        $("<span>").addClass("mostFrequentRoute").add("<a>", { text: formatItem(item) }).attr("href", "/?DeparturePlace=" + item.Route.DeparturePlace +"%ArrivalPlace"+ item.Route.ArrivalPlace).appendTo("#topRoutes");
-                        //$('<span>').appendTo($('#topRoutes')).addClass("mostFrequentRoute");
+                        var spanElement = document.createElement("span");
+                        spanElement.className = "mostFrequentRoute";
+                        var routeLink = document.createElement("button");
+                        routeLink.addEventListener("click", function () { fillRouteFields(item.DeparturePlace, item.ArrivalPlace) });
+                        routeLink.innerText = showRoute(item);
+                        spanElement.appendChild(routeLink);
+                        $(spanElement).appendTo("#topRoutes");
                     });
                 });
         });
 
-        function formatItem(item) {
-            return item.Route.DeparturePlace + " - " + item.Route.ArrivalPlace;
+        function fillRouteFields(depPlaceValue, arrPlaceValue) {
+            var departurePlaceField = document.querySelectorAll(".departurePlace");
+            var arrivalPlaceField = document.querySelectorAll(".arrivalPlace");
+            for (i = 0; i < departurePlaceField.length; i++) {
+                departurePlaceField[i].setAttribute("value", depPlaceValue);
+                arrivalPlaceField[i].setAttribute("value", arrPlaceValue);
+            }
         }
+
+        function showRoute(item) {
+            return item.DeparturePlace + " - " + item.ArrivalPlace;
+        }
+
     </script>
 }
 

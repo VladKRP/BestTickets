@@ -57,10 +57,11 @@ footer{
 
 .mostFrequentRoute:hover{
     background-color:rgba(85,120,115,0.1);
-
 }
 
-.mostFrequentRoute a{
+.mostFrequentRoute button{
+    background:inherit;
+    border:inherit;
     color:rgb(85,120,115);
     font-weight:600;
     text-decoration:none;

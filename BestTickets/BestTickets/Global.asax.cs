@@ -11,9 +11,10 @@ namespace BestTickets
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);//Must be declared higher than RouteConfig
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            GlobalConfiguration.Configure(WebApiConfig.Register);//Must be declared higher than RouteConfig
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<RouteRequestContext>(new CreateDatabaseIfNotExists<RouteRequestContext>());

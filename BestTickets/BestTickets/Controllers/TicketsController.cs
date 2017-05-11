@@ -6,11 +6,14 @@ using System.Net.Http;
 using System.Web.Http;
 using BestTickets.Infrastructure;
 using BestTickets.Models;
+using BestTickets.Services;
+using BestTickets.Extensions;
 
 namespace BestTickets.Controllers
 {
     public class TicketsController : ApiController
     {
+
         private IRepository<RouteRequest> context;
 
         public TicketsController()
@@ -23,11 +26,34 @@ namespace BestTickets.Controllers
             context = repo;
         }
 
-        [HttpGet]
-        public IQueryable<RouteRequest> GetTop10Routes()
+        public IEnumerable<Vehicle> GetTickets(RouteViewModel route)
         {
-            var top10Requests = context.GetTop10();
-            return top10Requests;
-        } 
+
+            if (route.Date == null)
+                route.Date = route.SetCurrentDate();
+
+            var tickets = TicketChecker.FindTickets(route).OrderTicketsPriceByDesc();
+            var averagePrice = tickets.GetAverageTicketsPrice();
+            var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
+
+            if (groupedTickets != null)
+                UpdateOrCreateRouteIfNotExist(route);
+
+            return groupedTickets;
+        }
+
+        private void UpdateOrCreateRouteIfNotExist(RouteViewModel route)
+        {
+            var routeRequest = context.FindByRoute(route);
+            if (routeRequest != null)
+            {
+                routeRequest.RequestsCount++;
+                context.Update(routeRequest);
+            }
+            else
+                context.Create(new RouteRequest() { Route = route });
+            context.Save();
+        }
+
     }
 }
