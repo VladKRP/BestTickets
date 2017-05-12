@@ -1,9 +1,0 @@
-﻿@model IEnumerable<BestTickets.Models.RouteRequest>
-
-
-@foreach(var entity in Model)
-{
-    <span class="mostFrequentRoute">
-        <a href="@Url.Action("Index", entity.Route)"><span>@entity.Route.DeparturePlace</span> - <span>@entity.Route.ArrivalPlace</span></a>
-    </span>
-}

@@ -175,7 +175,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
-    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Infrastructure\RouteRequestContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -243,7 +242,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_GetTickets.cshtml" />
     <Content Include="Views\Home\_TicketsNotFound.cshtml" />
-    <Content Include="Views\Home\_Top10FrequentRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
