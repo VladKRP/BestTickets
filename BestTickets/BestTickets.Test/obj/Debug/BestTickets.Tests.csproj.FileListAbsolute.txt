@@ -12,7 +12,6 @@ D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\vbc.exe
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\VBCSCompiler.exe
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\VBCSCompiler.exe.config
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.dll
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Helpers.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Mvc.dll
@@ -44,3 +43,11 @@ D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.dll
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.dll
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.dll
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.xml

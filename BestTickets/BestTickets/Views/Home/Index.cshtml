@@ -20,10 +20,9 @@
     @Html.ValidationMessageFor(x => x.ArrivalPlace, null, new { @class = "text-danger" })<br /><br />
 </div>
 
-<div class="hidden-xs row">
-    @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace, LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete" }))
+@*<div class="hidden-xs row">
+    @using (Ajax.BeginForm("../api/tickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace, LoadingElementId = "loader", OnBegin = "showLoading", OnComplete = "showTickets"}))
     {
-
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-inline col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
@@ -34,7 +33,7 @@
                         @Html.TextBoxFor(x => x.ArrivalPlace, new { @class = "form-control arrivalPlace", @placeholder = "Прибытие" })
                     </div>
                     <div class="form-group spaceLeft col-sm-3">
-                        <input type="date" class="form-control" name="Date" />
+                        <input type="date" class="form-control" id="Date" name="Date" />
                     </div>
                     <div class="form-group col-sm-3">
                         <input class="btn btn-default form-control" type="submit" value="Поиск" />
@@ -42,8 +41,10 @@
             </div>      
     } 
 </div>
+
+
 <div class="visible-xs row">
-    @using (Ajax.BeginForm("GetTickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace , LoadingElementId = "loader", OnBegin = "onBegin", OnComplete = "onComplete"}))
+    @using (Ajax.BeginForm("../api/tickets", new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "tickets", InsertionMode = InsertionMode.Replace , LoadingElementId = "loader", OnBegin = "showLoading", OnComplete = "showTickets"}))
     {
 
          @Html.AntiForgeryToken()
@@ -65,7 +66,7 @@
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="form-group col-xs-10">
-                    <input type="date" class="form-control" name="Date" />
+                    <input type="date" class="form-control" id="Date" name="Date" />
                 </div>
             </div>
             <div class="row">
@@ -78,6 +79,23 @@
         <div class="spaceAfterForm row"></div>
     } 
     
+</div>*@
+
+<div class="row">
+        <div class="form-inline col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+            <div class="form-group col-sm-3">
+                <input type="text" id="DepPlace" class="form-control departurePlace" placeholder="Отправление" />
+            </div>
+            <div class="form-group spaceLeft  col-sm-3">
+                <input type="text" id="ArrPlace" class="form-control arrivalPlace" placeholder="Прибытие" />
+            </div>
+            <div class="form-group spaceLeft col-sm-3">
+                <input type="date" class="form-control" id="TickDate" name="Date" />
+            </div>
+            <div class="form-group col-sm-3">
+                <button class="btn btn-default form-control" id="getTicketsBtn">Поиск</button>
+            </div>
+        </div>
 </div>
 
 <div id="topRoutes" class="top10Routes row text-center">
@@ -94,12 +112,50 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/ajax")
     <script>
-        function onBegin() {
+        
+        $(function () {
+            $("#getTicketsBtn").on("click", function () {
+                var route = {};
+                route.DeparturePlace = $("#DepPlace").val;
+                route.ArrivalPlace = $("#ArrPlace").val;
+                route.Date = $("#TickDate").val;
+                $.ajax({
+                    type : "GET",
+                    url : "../api/tickets/" + route,
+                    datatype: "JSON",
+                    cache: false,
+                }).success(function (data) {
+                    var generatedHtml = "";
+                    for (var i = 0; i < data.length; i++) {
+                        generatedHtml += '<div class="ticketCard-sm ticketCard"><div class="text-center routeLabel"><strong>' +
+                        data[i].Name + '<span>Маршрут:</span>' + data[i].Route + '</strong></div>' +
+                        '<div><span>Тип:</span>' + data[i].Type + '</div><div><span>Отправление: </span>' +
+                        data[i].DepartureTime + '<span>Прибытие: </span>' + data[i].ArrivalTime +
+                        '</div><div><span>Свободные места:</span>';
+                        for (var j = 0; j < data[i].Places.length; j++) {
+                            generatedHtml += '<p> <span class="placeType">' + data[i][j].Type +
+                            ' / </span><span class="placeAmount">' + data[i][j].Amount + ' / </span><span class="placeCost">';
+                            if(data[i][j].isCostLessThanAverage){
+                                generatedHtml += '<span class="label-success"><strong>' + data[i][j].Cost + '</strong><span>руб.</span></span>';
+                            }
+                            else{
+                                generatedHtml += '<span class="label-danger"><strong>' + data[i][j].Cost + '</strong><span>руб.</span></span>';
+                            }
+                            generatedHtml += '</span></p>';
+                        }
+                        generatedHtml += '</div></div></div>';
+                    }
+                    $("#tickets").html(generatedHtml);
+                })
+            })
+        })
+      
+        function showLoading() {
             $(".pageFade").show();
             $(".loadingProgress").show();
         }
 
-        function onComplete() {
+        function fadeLoading() {
             $(".pageFade").hide();
             $(".loadingProgress").hide();
         }
@@ -125,8 +181,8 @@
             var departurePlaceField = document.querySelectorAll(".departurePlace");
             var arrivalPlaceField = document.querySelectorAll(".arrivalPlace");
             for (i = 0; i < departurePlaceField.length; i++) {
-                departurePlaceField[i].setAttribute("value", depPlaceValue);
-                arrivalPlaceField[i].setAttribute("value", arrPlaceValue);
+                departurePlaceField[i].value = depPlaceValue;
+                arrivalPlaceField[i].value = arrPlaceValue;
             }
         }
 

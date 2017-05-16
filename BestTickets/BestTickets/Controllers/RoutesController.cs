@@ -19,6 +19,7 @@ namespace BestTickets.Controllers
             context = repo;
         }
 
+
         public IQueryable<RouteViewModel> GetTop10Routes()
         {
             var top10Requests = context.GetTop10().Select(x => x.Route);
