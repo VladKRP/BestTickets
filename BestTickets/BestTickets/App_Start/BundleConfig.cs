@@ -26,6 +26,8 @@ namespace BestTickets
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/tickets").Include(
+                "~/Scripts/Custom/tickets.js"));
 
         }
     }
