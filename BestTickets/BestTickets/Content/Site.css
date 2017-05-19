@@ -39,12 +39,13 @@ footer{
 
 .ticketCard{
     background:rgb(240,260,250);
-    border:1px solid black;
-    border-right:2px solid rgb(34,34,34);
-    border-bottom:3px solid rgb(34,34,34);
+    border:1px solid rgb(72, 63, 63);
     margin-bottom:0.2em;
 }
 
+.ticketCard:hover{
+    background:rgb(230,230,230);
+}
 
 .ticketCard-sm{
     margin-left:0.2em;

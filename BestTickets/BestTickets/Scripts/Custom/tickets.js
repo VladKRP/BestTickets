@@ -17,7 +17,7 @@ $(function () {
             $('#tickets').empty();
             var generatedHtml = "";
             if (data.length != 0) {
-                generatedHtml = '<div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="ticketsSchedule">';
+                generatedHtml = '<div class="text-center"><h4 class="text-center headerText marginSub">Доступные билеты</h4><br /></div><div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="ticketsSchedule">';
                 for (var i = 0; i < data.length; i++) {
                     generatedHtml += '<div class="ticketCard-sm ticketCard"><div class="text-center routeLabel"><strong>' +
                                             data[i].Name + '    <span>Маршрут: </span>' + data[i].Route + '</strong></div>' +
