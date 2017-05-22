@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201705021317566_InitializeDB.Designer.cs">
       <DependentUpon>201705021317566_InitializeDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.cs" />
+    <Compile Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.Designer.cs">
+      <DependentUpon>201705221705548_Add %27Kind%27 property to Vehicle model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RouteRequest.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
@@ -222,6 +226,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -251,6 +257,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705021317566_InitializeDB.resx">
       <DependentUpon>201705021317566_InitializeDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.resx">
+      <DependentUpon>201705221705548_Add %27Kind%27 property to Vehicle model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

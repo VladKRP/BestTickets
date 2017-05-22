@@ -134,3 +134,4 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.I
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csproj.GenerateResource.Cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
+D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.AddKindpropertytoVehiclemodel.resources

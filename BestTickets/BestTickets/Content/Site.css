@@ -37,14 +37,29 @@ footer{
     flex-wrap:wrap;
 }
 
+.sortButton{
+    background-color: rgb(230,220,180);
+}
+
+#vehicleTypeSelectList{
+    display:inline;
+    max-width:260px;
+}
+
+#ticketsFilter .sortButton{
+    margin:1em;
+}
+
 .ticketCard{
     background:rgb(240,260,250);
     border:1px solid rgb(72, 63, 63);
     margin-bottom:0.2em;
+    cursor:default;
 }
 
 .ticketCard:hover{
     background:rgb(230,230,230);
+    cursor:default;
 }
 
 .ticketCard-sm{

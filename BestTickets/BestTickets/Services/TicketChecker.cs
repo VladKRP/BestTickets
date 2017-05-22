@@ -42,6 +42,7 @@ namespace BestTickets.Services
                           {
                               Name = Parser.GetElementValueByClass(ticket, "train_id"),
                               Type = Parser.GetElementValueByClass(ticket, "train_description"),
+                              Kind = "Поезд/Электричка",
                               Route = Parser.GetElementValueByTag(Parser.GetElementByClass(ticket, "train_name -map").FirstOrDefault(), "a").FirstOrDefault()
                                               .Replace("&nbsp;", "").Replace("&mdash;", " - "),
                               DepartureTime = Parser.GetElementValueByClass(ticket, "train_start-time"),
@@ -82,6 +83,7 @@ namespace BestTickets.Services
                           {
                               Name = Parser.GetElementValueByClass(ticket, ""),
                               Type = Parser.GetElementValueByClass(ticket, "typ"),
+                              Kind = "Маршрутка/Автобус",
                               Route = Parser.GetElementValueByClass(ticket, "marshrut"),
                               DepartureTime = Parser.GetFirstElementValueByClass(ticket, "time"),
                               ArrivalTime = Parser.GetLastElementValueByClass(ticket, "time"),

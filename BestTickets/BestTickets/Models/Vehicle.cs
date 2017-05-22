@@ -6,6 +6,7 @@ namespace BestTickets.Models
     {
         public string Name { get; set; }
         public string Type { get; set; }
+        public string Kind { get; set; }
         public string Route { get; set; }
         
         public string DepartureTime { get; set; }

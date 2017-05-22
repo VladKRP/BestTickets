@@ -30,10 +30,9 @@ namespace BestTickets.Controllers
             if (route.Date == null)
                 route.Date = route.SetCurrentDate();
 
-            var tickets = TicketChecker.FindTickets(route).OrderTicketsPriceByDesc();
+            var tickets = TicketChecker.FindTickets(route);
             var averagePrice = tickets.GetAverageTicketsPrice();
             var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
-
             if(tickets.Count() != 0)
                 UpdateOrCreateRouteIfNotExist(route);
             return groupedTickets;

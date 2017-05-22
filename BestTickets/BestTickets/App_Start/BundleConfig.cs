@@ -23,9 +23,13 @@ namespace BestTickets
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                "~/Scripts/knockout-{version}.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/tickets").Include(
                 "~/Scripts/Custom/tickets.js"));
 
