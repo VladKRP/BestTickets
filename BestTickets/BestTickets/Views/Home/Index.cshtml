@@ -12,7 +12,7 @@
 </div>
 
 <div class="row text-center">
-    <h4 class="text-center headerText marginSub">Выберите маршрут</h4>
+    <h4 class="text-center ">Выберите маршрут</h4>
     <br />
 </div>
 
@@ -21,18 +21,18 @@
 </div>
 
 <div class="row">
-        <div class="form-inline col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="routeForm">
-            <div class="form-group col-sm-3">
-                <input type="text" id="DepPlace" class="form-control departurePlace routeInput" placeholder="Отправление"/>
+        <div class="form-inline text-center col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="routeForm">
+            <div class="form-group">
+                <input type="text" id="DepPlace" class="form-control customForm departurePlace routeInput" placeholder="Отправление"/>
             </div>
-            <div class="form-group spaceLeft  col-sm-3">
-                <input type="text" id="ArrPlace" class="form-control arrivalPlace routeInput" placeholder="Прибытие"/>
+            <div class="form-group">
+                <input type="text" id="ArrPlace" class="form-control customForm arrivalPlace routeInput" placeholder="Прибытие"/>
             </div>
-            <div class="form-group spaceLeft col-sm-3">
-                <input type="date" class="form-control" id="TickDate" name="Date"/>
+            <div class="form-group">
+                <input type="date" class="form-control customForm" id="TickDate" name="Date"/>
             </div>
-            <div class="form-group col-sm-3">
-                <button class="btn btn-default form-control" id="getTicketsBtn">Поиск</button>
+            <div class="form-group">
+                <button class="btn btn-default form-control customForm" id="getTicketsBtn">Поиск</button>
             </div>
         </div>
 </div>
@@ -41,7 +41,7 @@
 
 <div id="topRoutes" class="top10Routes row text-center">
     <br />
-    <h4 class="headerText text-center">Наиболее частые маршруты</h4>
+    <h4 class="text-center">Наиболее частые маршруты</h4>
 </div>
 
 <div id="loader" class="loadingProgress"></div>

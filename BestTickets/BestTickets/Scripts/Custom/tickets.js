@@ -15,7 +15,7 @@ $(function () {
             url: "../api/tickets/?DeparturePlace=" + departurePlace + "&ArrivalPlace=" + arrivalPlace + "&Date=" + date,
             datatype: "JSON",
             cache: false,
-        }).success(function (data) { generateTicketsScheduleHtml(data); })
+        }).success(function (data) { tickets = data; generateTicketsScheduleHtml(data); })
     })
 });
 
@@ -32,14 +32,14 @@ $(document).ajaxComplete(function () {
 function generateTicketsScheduleHtml(data) {
         $('#tickets').empty();
         var generatedHtml = "";
+        
         if (data.length != 0) {
-            tickets = data;
-            generatedHtml = '<div class="text-center"><h4 class="text-center headerText marginSub">Доступные билеты</h4><br /><div id="ticketsFilter"></div><br/></div><div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="ticketsSchedule">';
+            generatedHtml = '<div class="text-center"><h4 class="text-center">Доступные билеты</h4><br /><div id="ticketsFilter"></div><br/></div><div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="ticketsSchedule">';
             for (var i = 0; i < data.length; i++) {
-                generatedHtml += '<div class="ticketCard-sm ticketCard"><div class="text-center routeLabel"><strong>' +
+                generatedHtml += '<div class="ticketCard-sm ticketCard text-center"><div class="text-center routeLabel"><strong>' +
                                         data[i].Name + '    <span>Маршрут: </span>' + data[i].Route + '</strong></div>' +
                                         '<div><span>Тип:</span>' + data[i].Type + '</div><div><span>Отправление: </span>' +
-                                        data[i].DepartureTime + '<span>Прибытие: </span>' + data[i].ArrivalTime +
+                                        data[i].DepartureTime + '</br><span>Прибытие: </span>' + data[i].ArrivalTime +
                                         '</div><div><span>Свободные места: </span>';
                 for (var j = 0; j < data[i].Places.length; j++) {
                     generatedHtml += '<p> <span class="placeType">' + data[i].Places[j].Type +
@@ -55,18 +55,16 @@ function generateTicketsScheduleHtml(data) {
                 generatedHtml += '</div></div>';
             }
             generatedHtml += '</div>';
-            $("#tickets").html(generatedHtml);
-            addTicketsFilterPanel()
+            $("#tickets").html(generatedHtml);  
         }
         else {
-            $('#tickets').html('<p><h4 class="text-center ticketNotFoundColor">Билетов не найдено</h4></p>');
+            $('#tickets').html('<div class="text-center"><div id="ticketsFilter"></div><br/></div></div><p><h4 class="text-center ticketNotFoundColor">Билетов не найдено</h4></p>');
         }
+        addTicketsFilterPanel();
 }
 
-
-var routesUri = '../api/routes';
-
 $(document).ready(function () {
+    var routesUri = '../api/routes';
     $.getJSON(routesUri)
         .done(function (data) {
             $.each(data, function (key, item) {
@@ -148,14 +146,15 @@ function createSortByPriceButton() {
 
 function createVehicleKindSelectList() {
     var vehicleKindSelectList = document.createElement("select");
-    vehicleKindSelectList.className = "form-control";
+    vehicleKindSelectList.className = "form-control customForm";
     vehicleKindSelectList.setAttribute("id", "vehicleTypeSelectList");
+    vehicleKindSelectList.setAttribute("name", "Выбор транспорта");
     vehicleKindSelectList.addEventListener("change", function () {
         var selectedKindIndex = vehicleKindSelectList.selectedIndex;
         var filteredTickets = filterTicketsByVehicleKind(vehicleKindSelectList.options[selectedKindIndex].value);
         generateTicketsScheduleHtml(filteredTickets);
     })
-    $(vehicleKindSelectList).html("<option>Выбор транспорта</option><option value=' '>Не фильтровать</option><option value='Маршрутка/Автобус'>Маршрутка/Автобус</option><option value='Поезд/Электричка'>Поезд/Электричка</option>");
+    $(vehicleKindSelectList).html("<option selected>Выбор транспорта</option><option value=' '>Не фильтровать</option><option value='Маршрутка/Автобус'>Маршрутка/Автобус</option><option value='Поезд/Электричка'>Поезд/Электричка</option>");
     return vehicleKindSelectList;
 }
 
