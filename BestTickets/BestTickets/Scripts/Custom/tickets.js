@@ -150,13 +150,12 @@ function createVehicleKindSelectList() {
     var vehicleKindSelectList = document.createElement("select");
     vehicleKindSelectList.className = "form-control";
     vehicleKindSelectList.setAttribute("id", "vehicleTypeSelectList");
-    vehicleKindSelectList.value = "";
-    vehicleKindSelectList.addEventListener("onchange", function () {
+    vehicleKindSelectList.addEventListener("change", function () {
         var selectedKindIndex = vehicleKindSelectList.selectedIndex;
-        var filteredTickets = filterTicketsByVehicleKind(vehicleKindSelectList.options(selectedKindIndex).innerHtml);
+        var filteredTickets = filterTicketsByVehicleKind(vehicleKindSelectList.options[selectedKindIndex].value);
         generateTicketsScheduleHtml(filteredTickets);
     })
-    $(vehicleKindSelectList).html("<option value='Маршрутка/Автобус'>Маршрутка/Автобус</option><option value='Поезд/Электричка'>Поезд/Электричка</option><option value=''>Не фильтровать</option>");
+    $(vehicleKindSelectList).html("<option>Выбор транспорта</option><option value=' '>Не фильтровать</option><option value='Маршрутка/Автобус'>Маршрутка/Автобус</option><option value='Поезд/Электричка'>Поезд/Электричка</option>");
     return vehicleKindSelectList;
 }
 
@@ -208,8 +207,8 @@ function sortTicketsByPrice(isDescending) {
 }
 
 function filterTicketsByVehicleKind(kind) {
-    if (kind == "") return tickets;
-    var filteredTickets;
+    if (kind == " ") return tickets;
+    var filteredTickets = [];
     for (i = 0; i < tickets.length; i++) {
         if (tickets[i].Kind == kind)
             filteredTickets.push(tickets[i]);
