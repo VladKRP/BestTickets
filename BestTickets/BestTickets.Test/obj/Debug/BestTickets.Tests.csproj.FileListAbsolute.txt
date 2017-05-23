@@ -43,7 +43,6 @@ D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.xml
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll

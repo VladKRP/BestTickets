@@ -2,6 +2,7 @@
 var sortParametr = "";
 var descending = false;
 
+
 $(function () {
     $("#getTicketsBtn").on("click", function () {
         var departurePlace = $("#DepPlace").val();
@@ -34,7 +35,7 @@ function generateTicketsScheduleHtml(data) {
         var generatedHtml = "";
         
         if (data.length != 0) {
-            generatedHtml = '<div class="text-center"><h4 class="text-center">Доступные билеты</h4><br /><div id="ticketsFilter"></div><br/></div><div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10" id="ticketsSchedule">';
+            generatedHtml = '<div class="text-center"><h4 class="text-center">Доступные билеты</h4><br /><div id="ticketsFilter"></div><br/></div><div class="schedule col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8" id="ticketsSchedule">';
             for (var i = 0; i < data.length; i++) {
                 generatedHtml += '<div class="ticketCard-sm ticketCard text-center"><div class="text-center routeLabel"><strong>' +
                                         data[i].Name + '    <span>Маршрут: </span>' + data[i].Route + '</strong></div>' +
@@ -151,7 +152,7 @@ function createVehicleKindSelectList() {
     vehicleKindSelectList.setAttribute("name", "Выбор транспорта");
     vehicleKindSelectList.addEventListener("change", function () {
         var selectedKindIndex = vehicleKindSelectList.selectedIndex;
-        var filteredTickets = filterTicketsByVehicleKind(vehicleKindSelectList.options[selectedKindIndex].value);
+        filteredTickets = filterTicketsByVehicleKind(vehicleKindSelectList.options[selectedKindIndex].value);
         generateTicketsScheduleHtml(filteredTickets);
     })
     $(vehicleKindSelectList).html("<option selected>Выбор транспорта</option><option value=' '>Не фильтровать</option><option value='Маршрутка/Автобус'>Маршрутка/Автобус</option><option value='Поезд/Электричка'>Поезд/Электричка</option>");
@@ -196,7 +197,7 @@ function sortTicketsByArrivalTime(isDescending) {
 
 function sortTicketsByPrice(isDescending) {
     tickets.sort(function (a, b) {
-        if (a.Places != null && b.Places != null)
+        if (a.Places[0] != null && b.Places[0] != null)
         {
             var firstTicketPrice = a.Places[0].Cost;
             var secondTicketPrice = b.Places[0].Cost;
