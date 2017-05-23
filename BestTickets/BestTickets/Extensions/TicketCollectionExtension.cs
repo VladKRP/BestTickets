@@ -30,40 +30,40 @@ namespace BestTickets.Extensions
             }
         }
 
-        public static IEnumerable<Vehicle> OrderTicketsByPrice(this IEnumerable<Vehicle> tickets, bool? descending)
-        {
-            IEnumerable<Vehicle> orderedTickets;
-            if(descending == true)
-                orderedTickets = tickets.OrderBy(x => x.Places.Min());
-            else
-                orderedTickets = tickets.OrderByDescending(x => x.Places.Min());
-            return orderedTickets;
-        }
+        //public static IEnumerable<Vehicle> OrderTicketsByPrice(this IEnumerable<Vehicle> tickets, bool? descending)
+        //{
+        //    IEnumerable<Vehicle> orderedTickets;
+        //    if(descending == true)
+        //        orderedTickets = tickets.OrderBy(x => x.Places.Min());
+        //    else
+        //        orderedTickets = tickets.OrderByDescending(x => x.Places.Min());
+        //    return orderedTickets;
+        //}
 
-        public static IEnumerable<Vehicle> OrderTicketsByDepartureTime(this IEnumerable<Vehicle> tickets, bool? descending)
-        {
-            IEnumerable<Vehicle> orderedTickets;
-            if (descending == true)
-                orderedTickets = tickets.OrderByDescending(x => x.DepartureTime);
-            else
-                orderedTickets = tickets.OrderBy(x => x.DepartureTime);
-            return orderedTickets;
-        }
+        //public static IEnumerable<Vehicle> OrderTicketsByDepartureTime(this IEnumerable<Vehicle> tickets, bool? descending)
+        //{
+        //    IEnumerable<Vehicle> orderedTickets;
+        //    if (descending == true)
+        //        orderedTickets = tickets.OrderByDescending(x => x.DepartureTime);
+        //    else
+        //        orderedTickets = tickets.OrderBy(x => x.DepartureTime);
+        //    return orderedTickets;
+        //}
 
-        public static IEnumerable<Vehicle> FilterTicketsByPrice(this IEnumerable<Vehicle> tickets, int startPrice, int endPrice)
-        {
-            return tickets.Where(x => x.Places.Min().Cost >= startPrice && x.Places.Max().Cost <= endPrice);
-        }
+        //public static IEnumerable<Vehicle> FilterTicketsByPrice(this IEnumerable<Vehicle> tickets, int startPrice, int endPrice)
+        //{
+        //    return tickets.Where(x => x.Places.Min().Cost >= startPrice && x.Places.Max().Cost <= endPrice);
+        //}
 
-        public static IEnumerable<Vehicle> SortByParametr(this IEnumerable<Vehicle> tickets, string param, bool? isDescending)
-        {
-            switch (param)
-            {
-                case "time": tickets = tickets.OrderTicketsByDepartureTime(isDescending); break;
-                case "price": tickets = tickets.OrderTicketsByPrice(isDescending);break;
-            }
-            return tickets;
-        }
+        //public static IEnumerable<Vehicle> SortByParametr(this IEnumerable<Vehicle> tickets, string param, bool? isDescending)
+        //{
+        //    switch (param)
+        //    {
+        //        case "time": tickets = tickets.OrderTicketsByDepartureTime(isDescending); break;
+        //        case "price": tickets = tickets.OrderTicketsByPrice(isDescending);break;
+        //    }
+        //    return tickets;
+        //}
 
        
     }
