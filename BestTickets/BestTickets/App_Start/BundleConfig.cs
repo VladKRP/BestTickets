@@ -13,6 +13,12 @@ namespace BestTickets
                         "~/Scripts/Custom/tickets.js"
                         ));
 
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+                "~/Scripts/modernizr-{version}.js",
+                "~/Scripts/yepnope.{version}.js",
+                "~/Scripts/Custom/IEDatepicker.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js"));

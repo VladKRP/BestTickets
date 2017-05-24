@@ -13,7 +13,7 @@ $(function () {
        
         $.ajax({
             type: "GET",
-            url: "../api/tickets/?DeparturePlace=" + departurePlace + "&ArrivalPlace=" + arrivalPlace + "&Date=" + date,
+            url: "../api/tickets/?DeparturePlace=" + encodeURIComponent(departurePlace) + "&ArrivalPlace=" + encodeURIComponent(arrivalPlace) + "&Date=" + date,
             datatype: "JSON",
             cache: false,
         }).success(function (data) { tickets = data; generateTicketsScheduleHtml(data); })
@@ -218,5 +218,4 @@ function filterTicketsByVehicleKind(kind) {
     }
     return filteredTickets;
 }
-
 

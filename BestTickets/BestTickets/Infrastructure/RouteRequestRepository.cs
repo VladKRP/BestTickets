@@ -13,11 +13,6 @@ namespace BestTickets.Infrastructure
             context = new RouteRequestContext();
         }
 
-        //public RouteRequestRepository(RouteRequestContext context)
-        //{
-        //    this.context = context;
-        //}
-
         public IEnumerable<RouteRequest> GetAll()
         {
             return context.RouteRequests.Select(x => x);

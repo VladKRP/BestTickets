@@ -52,13 +52,13 @@ footer{
 
 .ticketCard{
     background:rgb(240,260,250);
-    border:1px solid rgb(72, 63, 63);
+    border:1px solid rgb(200,200,180);
     margin-bottom:0.2em;
     cursor:default;
 }
 
 .ticketCard:hover{
-    background:rgb(230,230,230);
+    box-shadow:0 0 8px 4px rgba(0, 0, 0, 0.2);
     cursor:default;
 }
 
@@ -77,8 +77,8 @@ footer{
 
 
 .mostFrequentRoute button{
-    background:inherit;
-    border:inherit;
+    background:none;
+    border:none;
     color:rgb(85,120,115);
     font-weight:600;
     text-decoration:none;
