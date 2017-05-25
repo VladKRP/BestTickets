@@ -46,7 +46,6 @@ D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.xml

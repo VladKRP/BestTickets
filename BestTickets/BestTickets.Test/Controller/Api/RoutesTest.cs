@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BestTickets.Models;
 using BestTickets.Controllers;
+using BestTickets.Infrastructure;
+using System.Linq;
 
 namespace BestTickets.Tests.Controller.Api
 {
@@ -13,16 +15,40 @@ namespace BestTickets.Tests.Controller.Api
     [TestClass]
     public class RoutesTest
     {
-        //[TestMethod]
-        //public void GetTop10Routes_IsNotNull()
-        //{
-        //    var testRoutes = GetRoutes();
+        private IEnumerable<RouteRequest> testItems;
+        private FakeRouteRequestRepository repository;
+        private RoutesController controller;
 
-        //    var routesController = new RoutesController(GetRoutes());
-        //    var result = routesController.GetTop10Routes();
-        //    Assert.IsNotNull(result);
-        //}
+        [TestInitialize]
+        public void InitialSetups()
+        {
+            testItems = GetRoutes();
+            repository = new FakeRouteRequestRepository(testItems);
+            controller = new RoutesController(repository);
+        }
 
+        [TestMethod]
+        public void GetTop10Routes_IsNotNull()
+        {
+            var result = controller.GetTop10Routes();
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetTop10Routes_Return10Routes()
+        {
+            const int expectedItemsQuantity = 10;
+            var result = controller.GetTop10Routes();
+            Assert.AreEqual(expectedItemsQuantity, result.Count());
+        }
+
+        [TestMethod]
+        public void GetTop10Routes_ReturnRightRoutes()
+        {
+            var expectedFirstRoute = testItems.FirstOrDefault(x => x.Id.Equals(6)).Route;
+            var result = controller.GetTop10Routes();
+            Assert.AreEqual(expectedFirstRoute, result.First());
+        }
 
 
         private IEnumerable<RouteRequest> GetRoutes()

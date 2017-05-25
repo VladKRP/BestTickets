@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoutesController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Infrastructure\FakeRouteRequestRepository.cs" />
     <Compile Include="Infrastructure\RouteRequestContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
