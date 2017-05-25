@@ -6,25 +6,25 @@ using BestTickets.Models;
 using BestTickets.Controllers;
 using BestTickets.Infrastructure;
 using System.Linq;
+using Moq;
 
 namespace BestTickets.Tests.Controller.Api
 {
-    /// <summary>
-    /// Summary description for RoutesTest
-    /// </summary>
+
     [TestClass]
     public class RoutesTest
     {
         private IEnumerable<RouteRequest> testItems;
-        private FakeRouteRequestRepository repository;
+        private Mock<IRouteRequestRepository> mockRepository;
         private RoutesController controller;
 
         [TestInitialize]
         public void InitialSetups()
         {
             testItems = GetRoutes();
-            repository = new FakeRouteRequestRepository(testItems);
-            controller = new RoutesController(repository);
+            mockRepository = new Mock<IRouteRequestRepository>();
+            mockRepository.Setup(x => x.GetTop10()).Returns(testItems.OrderByDescending(x => x.RequestsCount).Take(10).AsQueryable());
+            controller = new RoutesController(mockRepository.Object);
         }
 
         [TestMethod]
@@ -47,7 +47,8 @@ namespace BestTickets.Tests.Controller.Api
         {
             var expectedFirstRoute = testItems.FirstOrDefault(x => x.Id.Equals(6)).Route;
             var result = controller.GetTop10Routes();
-            Assert.AreEqual(expectedFirstRoute, result.First());
+            var actualFirstRoute = result.First();
+            Assert.AreEqual(expectedFirstRoute, actualFirstRoute);
         }
 
 

@@ -4,13 +4,18 @@ using System.Collections.Generic;
 
 namespace BestTickets.Infrastructure
 {
-    public class RouteRequestRepository:IRepository<RouteRequest>
+    public class RouteRequestRepository:IRouteRequestRepository
     {
         private RouteRequestContext context;
 
         public RouteRequestRepository()
         {
             context = new RouteRequestContext();
+        }
+
+        public RouteRequestRepository(RouteRequestContext context)
+        {
+            this.context = context;
         }
 
         public IEnumerable<RouteRequest> GetAll()

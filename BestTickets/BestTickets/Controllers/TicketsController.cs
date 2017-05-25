@@ -13,14 +13,14 @@ namespace BestTickets.Controllers
 {
     public class TicketsController : ApiController
     {
-        private IRepository<RouteRequest> context;
+        private IRouteRequestRepository context;
 
         public TicketsController()
         {
             context = new RouteRequestRepository();
         }
 
-        public TicketsController(IRepository<RouteRequest> repo)
+        public TicketsController(IRouteRequestRepository repo)
         {
             context = repo;
         }
