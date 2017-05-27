@@ -128,7 +128,6 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\System.Web.WebPages.Deployment
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\System.Web.WebPages.Razor.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Antlr3.Runtime.pdb
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Newtonsoft.Json.xml
-D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.InitializeDB.resources
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csproj.GenerateResource.Cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
@@ -213,3 +212,8 @@ D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csproj.Gene
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
+D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Castle.Core.dll
+D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.dll
+D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Castle.Core.xml
+D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.xml
+D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
