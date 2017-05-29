@@ -1,0 +1,7 @@
+/*  
+                //Show adaptiveCard
+                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+                Activity reply = activity.CreateReply();
+                reply.Attachments = new List<Attachment>() { new Attachment() { ContentType = AdaptiveCard.ContentType, Content = CreateFillRouteAdaptiveCard() } };
+                await connector.Conversations.SendToConversationAsync(reply);
+        */

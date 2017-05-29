@@ -211,9 +211,9 @@ D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csproj.GenerateResource.Cache
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
-D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Castle.Core.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Castle.Core.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
+D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
