@@ -2,6 +2,7 @@
 using System.Linq;
 using BestTickets.Extensions;
 using BestTickets.Models;
+using System;
 
 namespace BestTickets.Services
 {
@@ -10,6 +11,19 @@ namespace BestTickets.Services
         public static IEnumerable<Vehicle> FindTickets(RouteViewModel route)
         {
             return FindTrainTickets(route).Concat(FindBusTickets(route));
+        }
+
+        public static IEnumerable<Vehicle> GetByVehicleKind(RouteViewModel route, string vehicleKind)
+        {
+            IEnumerable<Vehicle> tickets = null;
+
+            if(string.IsNullOrEmpty(vehicleKind))
+                tickets = FindTickets(route);
+            else if (vehicleKind.Equals("Маршрутка/Автобус"))
+                tickets = FindBusTickets(route);
+            else if (vehicleKind.Equals("Поезд/Электричка"))
+                tickets = FindTrainTickets(route);          
+            return tickets;
         }
 
         public static IEnumerable<Vehicle> FindBusTickets(RouteViewModel route)

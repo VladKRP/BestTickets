@@ -31,23 +31,24 @@ namespace BestTickets.Extensions
             }
         }
 
-        public static IEnumerable<Vehicle> GetTicketsByTime(this IEnumerable<Vehicle> tickets, string time)
+        public static IEnumerable<Vehicle> GetTicketsByPrice(this IEnumerable<Vehicle> tickets, double? price)
         {
-            return tickets.Where(x => x.DepartureTime.Equals(time));
+            //Not work yet
+            IEnumerable<Vehicle> filteredTickets = null;
+            if (price == null)
+                filteredTickets = tickets;
+            else
+                filteredTickets = tickets.Where(x => x.Places.Min().Cost <= price);
+            return filteredTickets;
         }
 
-        public static Vehicle GetImmediateTicket(this IEnumerable<Vehicle> tickets)
+        public static IEnumerable<Vehicle> GetTicketsByTimeOrNearest(this IEnumerable<Vehicle> tickets, TimeSpan? time)
         {
-            //idk work right, or no
-            TimeSpan time = new TimeSpan();
-            return tickets.OrderBy(x => x.DepartureTime).FirstOrDefault(x => new TimeSpan(int.Parse(x.DepartureTime.Take(2).ToString()),int.Parse(x.DepartureTime.Skip(3).Take(2).ToString()),0) <= time);
-        }
-
-        //public static IEnumerable<Vehicle> GetImmediateTicketsByTime(this IEnumerable<Vehicle> tickets, string time) { return null; }
-
-        public static IEnumerable<Vehicle> GetTicketsByPrice(this IEnumerable<Vehicle> tickets, int price)
-        {
-            return tickets.Where(x => x.Places.Min().Cost <= price);
+            var hours = time.Value.Hours;
+            var result = tickets.Where(x => x.DepartureTime.Take(2).ToString().Equals(hours.ToString()));
+            if (result.Count() == 0)
+                result = tickets.OrderBy(x => x.DepartureTime).Where(x => int.Parse(x.DepartureTime.Substring(0, 2)) >= (hours)).Take(3);
+            return result;
         }
 
     }

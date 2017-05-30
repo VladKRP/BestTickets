@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
-using Newtonsoft.Json;
-using BestTickets.Models;
-using BestTickets.Controllers;
-using System.Text;
-using BestTickets.Services;
-using System.Collections.Generic;
-using AdaptiveCards;
 using RouteHelpBot.Extensions;
 
 namespace RouteHelpBot
 {
-    //[BotAuthentication]
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -32,7 +22,7 @@ namespace RouteHelpBot
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                var feedback = CustomRequestHandle.HandleTextRequest(CustomRequestHandle.CreateRouteByTextRequest(activity),CustomRequestHandle.DefineVehicleType(activity));
+                var feedback = CustomRequestHandle.HandleTextRequest(CustomRequestHandle.RecognizeUserRequest(activity));
                 Activity reply = activity.CreateReply(feedback);
 
                 await connector.Conversations.ReplyToActivityAsync(reply);

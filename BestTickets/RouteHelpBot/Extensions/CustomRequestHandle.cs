@@ -3,6 +3,7 @@ using BestTickets.Extensions;
 using BestTickets.Models;
 using BestTickets.Services;
 using Microsoft.Bot.Connector;
+using RouteHelpBot.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,108 +14,92 @@ namespace RouteHelpBot.Extensions
     public static class  CustomRequestHandle
     {
 
-        public static AdaptiveCard CreateFillRouteAdaptiveCard()
+        private static RouteViewModel RecognizeRoute(string activityText)
         {
-            AdaptiveCard card = new AdaptiveCard();
-            var inputFields = new List<TextInput>() {
-                new TextInput()
-                {
-                    Id = "departurePlace",
-                    IsRequired = true,
-                    Placeholder = "Место отправления",
-                },
-                new TextInput()
-                {
-                    Id = "arrivalPlace",
-                    IsRequired = true,
-                    Placeholder = "Место прибытия",
-                }
-            };
-            card.Body.Add(new TextBlock() { Text = "Введите маршрут:" });
-            card.Body.AddRange(inputFields);
-            card.Actions.Add(new SubmitAction()
-            {
-                Title = "Найти",
-
-            });
-            return card;
-        }
-
-        public static RouteViewModel CreateRouteByTextRequest(Activity activity)
-        {
-            var request = activity.Text;
-            var departurePlace = request.Where((x, i) => i > request.IndexOf("из", StringComparison.CurrentCultureIgnoreCase) + 2 && i < request.IndexOf("в", StringComparison.CurrentCultureIgnoreCase) - 2)
+            var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
                 .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);
-            var arrivalPlace = request.Where((x, i) => i > request.IndexOf("в", StringComparison.CurrentCultureIgnoreCase) + 1).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);           
+            var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);           
             RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
             route.Date = route.SetCurrentDate();
             return route;      
         }
-
-        public static string DefineVehicleType(Activity activity)
+        
+        private static string RecognizeVehicleKind(string activityText)
         {
-            var request = activity.Text;
-            var vehicleKind = request.Where((x, i) => i > request.IndexOf("на", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
+            string vehicleKind = null;
+            var isBus = activityText.IndexOf("автобус", StringComparison.CurrentCultureIgnoreCase) >= 0 || activityText.IndexOf("маршрутк",StringComparison.CurrentCultureIgnoreCase) >= 0;
+            if (isBus)
+                vehicleKind = "Маршрутка/Автобус";
+            else
+            {
+                var isTrain = activityText.IndexOf("поезд", StringComparison.CurrentCultureIgnoreCase) >= 0 || activityText.IndexOf("электричк", StringComparison.CurrentCultureIgnoreCase) >= 0;
+                if (isTrain)
+                    vehicleKind = "Поезд/Электричка";
+            }      
             return vehicleKind;
         }
 
-        public static string HandleTextRequest(RouteViewModel route, string vehicleKind = null)
+        private static double? RecognizePrice(string activityText)
+        {
+            //not work yet
+            double? returningValue = null;
+            //var price = activityText.Where((x, i) => (i > activityText.IndexOf(" за ") + 3) || (i > activityText.IndexOf(" cтоимостью ")) || (i > activityText.IndexOf(" имея ")))
+            //    .TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("", (x,y) => x+=y);
+            var price = activityText.Where((x, i) => i > activityText.IndexOf(" за ") + 3).TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("", (x, y) => x += y);
+            if (!string.IsNullOrEmpty(price))
+                returningValue = double.Parse(price);
+            return returningValue;
+        }
+
+        private static TimeSpan? RecognizeTime(string activityText)
+        {
+            TimeSpan? time = null;
+            var findedTime = activityText.Where((x, i) => i > activityText.IndexOf(" на ", StringComparison.CurrentCultureIgnoreCase) + 3)
+                .TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("",(x,y) => x+=y);
+            if(!string.IsNullOrEmpty(findedTime))
+            {
+               var tempTime = findedTime.Split(':', '-','.');
+               time = new TimeSpan(int.Parse(tempTime[0]), int.Parse(tempTime[1]), 0);
+            }
+            else
+            {
+                var isImmediateTicket = activityText.IndexOf("ближайш", StringComparison.CurrentCultureIgnoreCase) >= 0;
+                if (isImmediateTicket)
+                    time = DateTime.Now.TimeOfDay;
+            }
+            
+            return time;
+        }
+
+        public static UserRequest RecognizeUserRequest(Activity activity)  
+        {
+            UserRequest recognizedUserRequest = new UserRequest()
+            {
+                Route = RecognizeRoute(activity.Text),
+                Price = RecognizePrice(activity.Text),
+                VehicleKind = RecognizeVehicleKind(activity.Text),
+                Time = RecognizeTime(activity.Text)
+            };
+            return recognizedUserRequest;
+        }
+
+        public static string HandleTextRequest(UserRequest request)
         {
             string responseText;
-            if (string.IsNullOrEmpty(route.ArrivalPlace) || string.IsNullOrEmpty(route.DeparturePlace))
-                responseText = MakeTicketsNotFoundFeedbackUntrivial();
+            if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
+                responseText = FeedbackGenerator.MakeTicketsNotFoundFeedbackUntrivial();
             else
             {
-                var tickets = FilterByVehicleKind(route, vehicleKind);
-                responseText = GenerateTicketsFeedbackMessage(tickets);
-            }
+                var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind);
+                if (request.Price != null)
+                    tickets = tickets.GetTicketsByPrice(request.Price);
+                if (request.Time != null)
+                    tickets = tickets.GetTicketsByTimeOrNearest(request.Time);
+ 
+                responseText = FeedbackGenerator.GenerateTicketsFeedbackMessage(tickets);
+            }         
             return responseText;
         }
-
-        private static IEnumerable<Vehicle> FilterByVehicleKind(RouteViewModel route, string vehicleKind)
-        {
-            IEnumerable<Vehicle> tickets = null;
-                
-            if (vehicleKind.IndexOf("маршрутк", StringComparison.CurrentCultureIgnoreCase) > 0 || vehicleKind.IndexOf("автобус", StringComparison.CurrentCultureIgnoreCase) > 0)
-                tickets = TicketChecker.FindBusTickets(route);
-            else if (vehicleKind.IndexOf("поезд", StringComparison.CurrentCultureIgnoreCase) > 0 || vehicleKind.IndexOf("электричк", StringComparison.CurrentCultureIgnoreCase) > 0)
-                tickets = TicketChecker.FindTrainTickets(route);
-            else
-                tickets = TicketChecker.FindTickets(route);
-            return tickets;
-        }
-
-        public static string GenerateTicketsFeedbackMessage(IEnumerable<Vehicle> tickets)
-        {
-            var feedbackMessage = new StringBuilder();
-            if (tickets.Count() > 0)
-            {
-                feedbackMessage.Append($"Вот что я нашел по вашему запросу:\n ");
-                foreach (var ticket in tickets)
-                {
-
-                    feedbackMessage.Append($"---\n\r {ticket.Name} {ticket.Route} \n\r {ticket.Type}\n\r Отправление:{ticket.DepartureTime}\n\r Прибытие:{ticket.ArrivalTime}\n\r ");
-                    if (ticket.Places.Count() > 0)
-                    {
-                        feedbackMessage.Append($"Места:\n\r ");
-                        foreach (var place in ticket.Places)
-                            feedbackMessage.Append($"{place.Type}/ {place.Amount}/ {place.Cost} руб.\n\r ");
-                    }
-
-                }
-            }
-            else
-                feedbackMessage.Append(MakeTicketsNotFoundFeedbackUntrivial());
-            return feedbackMessage.ToString();
-        }
-
-        public static string MakeTicketsNotFoundFeedbackUntrivial()
-        {
-            var feedback = new List<string>() { "Билетов по вашему запросу не найденно.Возможно вы указали что-то не верно.",
-                "Мне не удалось ничего найти. Возможно что-то указано не верно.",
-                "Возможно вы в чем-то ошиблись. Мне не удалось ничего найти.",
-           "По вашему запросу ничего не найдено. Возможно вы что-то ввели неверно." };
-            return feedback.ElementAt(new Random().Next(feedback.Count()));
-        }
+    
     }
 }
