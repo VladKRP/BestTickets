@@ -44,11 +44,17 @@ namespace BestTickets.Extensions
 
         public static IEnumerable<Vehicle> GetTicketsByTimeOrNearest(this IEnumerable<Vehicle> tickets, TimeSpan? time)
         {
-            var hours = time.Value.Hours;
-            var result = tickets.Where(x => x.DepartureTime.Take(2).ToString().Equals(hours.ToString()));
-            if (result.Count() == 0)
-                result = tickets.OrderBy(x => x.DepartureTime).Where(x => int.Parse(x.DepartureTime.Substring(0, 2)) >= (hours)).Take(3);
-            return result;
+            IEnumerable<Vehicle> filteredTickets = null;
+            if (time == null)
+                filteredTickets = tickets;
+            else
+            {
+                var hours = time.Value.Hours;
+                filteredTickets = tickets.Where(x => x.DepartureTime.Take(2).ToString().Equals(hours.ToString()));
+                if (filteredTickets.Count() == 0)
+                    filteredTickets = tickets.OrderBy(x => x.DepartureTime).Where(x => int.Parse(x.DepartureTime.Substring(0, 2)) >= (hours)).Take(3);
+            }     
+            return filteredTickets;
         }
 
     }

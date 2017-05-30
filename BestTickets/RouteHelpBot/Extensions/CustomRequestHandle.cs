@@ -90,12 +90,8 @@ namespace RouteHelpBot.Extensions
                 responseText = FeedbackGenerator.MakeTicketsNotFoundFeedbackUntrivial();
             else
             {
-                var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind);
-                if (request.Price != null)
-                    tickets = tickets.GetTicketsByPrice(request.Price);
-                if (request.Time != null)
-                    tickets = tickets.GetTicketsByTimeOrNearest(request.Time);
- 
+                var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind)
+                    .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
                 responseText = FeedbackGenerator.GenerateTicketsFeedbackMessage(tickets);
             }         
             return responseText;
