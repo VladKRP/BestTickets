@@ -16,14 +16,17 @@ namespace RouteHelpBot.Extensions
                 foreach (var ticket in tickets)
                 {
                     var ticketName = string.Format($"{ticket.Name} {ticket.Route}");
-                    var ticketTimes = string.Format($"Отправление: {ticket.DepartureTime}\t\tПрибытие: {ticket.ArrivalTime}");
-                    var ticketPlacesInfo = ticket.Places.Select(x => string.Format($"{x.Type}\t\t{x.Cost}руб.\t\t{x.Amount}мест(а)"));
+                    var ticketTimes = string.Format($"Отправление: {ticket.DepartureTime}\t\tПрибытие: {ticket.ArrivalTime}");     
                     var cardElements = new List<CardElement>(){
                        CreateTextBlock(ticketName, TextSize.Large, TextWeight.Bolder, TextColor.Accent, HorizontalAlignment.Center),
                        CreateTextBlock(ticketTimes, TextSize.Medium, alignment:HorizontalAlignment.Center),
                    };
-                    foreach (var place in ticketPlacesInfo)
-                        cardElements.Add(CreateTextBlock(place, TextSize.Medium, alignment: HorizontalAlignment.Center));
+                    if(ticket.Places.Count() > 0)
+                    {
+                        var ticketPlacesInfo = ticket.Places.Select(x => string.Format($"{x.Type}\t\t{x.Cost}руб.\t\t{x.Amount}мест(а)"));
+                        foreach (var place in ticketPlacesInfo)
+                            cardElements.Add(CreateTextBlock(place, TextSize.Medium, alignment: HorizontalAlignment.Center));
+                    }
 
                     card.Body.Add(new Container()
                     {
@@ -65,6 +68,7 @@ namespace RouteHelpBot.Extensions
         {
             return new TextBlock()
             {
+                
                 Text = text,
                 Size = size,
                 HorizontalAlignment = alignment,

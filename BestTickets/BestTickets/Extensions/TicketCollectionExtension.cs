@@ -33,8 +33,7 @@ namespace BestTickets.Extensions
 
         public static IEnumerable<Vehicle> GetTicketsByPrice(this IEnumerable<Vehicle> tickets, double? price)
         {
-            //Not work yet
-            IEnumerable<Vehicle> filteredTickets = new List<Vehicle>();
+            IEnumerable<Vehicle> filteredTickets = null;
             if (price == null)
                 filteredTickets = tickets;
             else
@@ -45,16 +44,11 @@ namespace BestTickets.Extensions
 
         public static IEnumerable<Vehicle> GetTicketsByTimeOrNearest(this IEnumerable<Vehicle> tickets, TimeSpan? time)
         {
-            IEnumerable<Vehicle> filteredTickets = null;
+            IEnumerable<Vehicle> filteredTickets = null;       
             if (time == null)
                 filteredTickets = tickets;
             else
-            {
-                var hours = time.Value.Hours;
-                filteredTickets = tickets.Where(x => x.DepartureTime.Take(2).ToString().Equals(hours.ToString()));
-                if (filteredTickets.Count() == 0)
-                    filteredTickets = tickets.OrderBy(x => x.DepartureTime).Where(x => int.Parse(x.DepartureTime.Substring(0, 2)) >= (hours)).Take(1);
-            }     
+                filteredTickets = tickets.OrderBy(x => x.DepartureTime).Where(x => new TimeSpan(int.Parse(x.DepartureTime.Substring(0, 2)), int.Parse(x.DepartureTime.Substring(3, 2)), 0) >= time).Take(1);
             return filteredTickets;
         }
 

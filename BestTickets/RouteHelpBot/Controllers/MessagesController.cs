@@ -23,7 +23,7 @@ namespace RouteHelpBot
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                /*Text feedback*/
+                ///*Text feedback*/
                 //var feedback = RequestHandler.HandleRequestAsText(RequestRecognizer.RecognizeUserRequest(activity));
                 //Activity reply = activity.CreateReply(feedback);
 

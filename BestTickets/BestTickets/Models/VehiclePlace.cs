@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace BestTickets.Models
@@ -22,9 +23,7 @@ namespace BestTickets.Models
             if (cost == string.Empty)
                 return null;
             var money = cost.TakeWhile(c => char.IsDigit(c) || c == '.' || c == ',').Select(c => c == ',' ? '.' : c).Aggregate("", (x, y) => x += y);
-            //var money = cost.TakeWhile(c => char.IsDigit(c) || c == '.' || c == ',').Select(c =>  c == '.' ? ',' : c).Aggregate("", (x, y) => x += y);
-            var doubleMoney = Convert.ToDouble(money);
-            return doubleMoney;
+            return Convert.ToDouble(money, CultureInfo.InvariantCulture.NumberFormat);
         }
 
         public int CompareTo(VehiclePlace obj)
