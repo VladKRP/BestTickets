@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Connector;
 using RouteHelpBot.Extensions;
+using AdaptiveCards;
 
 namespace RouteHelpBot
 {
@@ -22,8 +23,14 @@ namespace RouteHelpBot
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                var feedback = CustomRequestHandle.HandleTextRequest(CustomRequestHandle.RecognizeUserRequest(activity));
-                Activity reply = activity.CreateReply(feedback);
+                /*Text feedback*/
+                //var feedback = RequestHandler.HandleRequestAsText(RequestRecognizer.RecognizeUserRequest(activity));
+                //Activity reply = activity.CreateReply(feedback);
+
+                /*AdaptiveCard feedback*/
+                Activity reply = activity.CreateReply();
+                reply.Attachments.Add(new Attachment() { ContentType = AdaptiveCard.ContentType,
+                    Content = RequestHandler.HandleRequestAsAdaptiveCard(RequestRecognizer.RecognizeUserRequest(activity)) });
 
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }

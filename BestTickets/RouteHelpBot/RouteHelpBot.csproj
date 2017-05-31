@@ -137,8 +137,10 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Extensions\CustomRequestHandle.cs" />
-    <Compile Include="Extensions\FeedbackGenerator.cs" />
+    <Compile Include="Extensions\AdaptiveCardFeedbackGenerator.cs" />
+    <Compile Include="Extensions\RequestHandler.cs" />
+    <Compile Include="Extensions\RequestRecognizer.cs" />
+    <Compile Include="Extensions\TextFeedbackGenerator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
