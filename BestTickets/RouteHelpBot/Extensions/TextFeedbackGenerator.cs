@@ -41,7 +41,7 @@ namespace RouteHelpBot.Extensions
                 "Мне не удалось ничего найти. Возможно что-то указано не верно.",
                 "Возможно вы в чем-то ошиблись. Мне не удалось ничего найти.",
            "По вашему запросу ничего не найдено. Возможно вы что-то ввели неверно." };
-            return feedback.ElementAt(new Random().Next(feedback.Count()));
+            return ReturnRandomString(feedback);
         }
 
         public static string MakeWrongRouteFeedbackUntrivial()
@@ -50,7 +50,19 @@ namespace RouteHelpBot.Extensions
                 "Маршрут не указан.",
                 "Не могу определить маршрут.",
                 "Я не смог определить маршрут. Попробуйте ввести еще раз." };
-            return feedback.ElementAt(new Random().Next(feedback.Count()));
+            return ReturnRandomString(feedback);
+        }
+
+        public static string MakeGreetingFeedbackUntrivial()
+        {
+            var feedback = new List<string>() { "Привет", "Я в вашем распоряжении", "Привет. Чем я могу вам помочь?" };
+            return ReturnRandomString(feedback);
+
+        }
+
+        private static string ReturnRandomString(IEnumerable<string> elems)
+        {
+            return elems.ElementAt(new Random().Next(elems.Count()));
         }
 
     }

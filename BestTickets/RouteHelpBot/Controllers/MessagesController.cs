@@ -24,13 +24,13 @@ namespace RouteHelpBot
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
                 ///*Text feedback*/
-                //var feedback = RequestHandler.HandleRequestAsText(RequestRecognizer.RecognizeUserRequest(activity));
-                //Activity reply = activity.CreateReply(feedback);
+                var feedback = RequestHandler.HandleRequestAsText(RequestRecognizer.RecognizeUserRequest(activity));
+                Activity reply = activity.CreateReply(feedback);
 
                 /*AdaptiveCard feedback*/
-                Activity reply = activity.CreateReply();
-                reply.Attachments.Add(new Attachment() { ContentType = AdaptiveCard.ContentType,
-                    Content = RequestHandler.HandleRequestAsAdaptiveCard(RequestRecognizer.RecognizeUserRequest(activity)) });
+                //Activity reply = activity.CreateReply();
+                //reply.Attachments.Add(new Attachment() { ContentType = AdaptiveCard.ContentType,
+                //    Content = RequestHandler.HandleRequestAsAdaptiveCard(RequestRecognizer.RecognizeUserRequest(activity)) });
 
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }

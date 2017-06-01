@@ -11,7 +11,12 @@ namespace RouteHelpBot.Extensions
         {
             AdaptiveCard card = new AdaptiveCard();
             if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
-                card = AdaptiveCardFeedbackGenerator.GenerateWrongRouteCard();
+            { 
+                if (request.KeyWord == "Приветствие")
+                    card = AdaptiveCardFeedbackGenerator.GenerateGreetingCard();
+                else
+                    card = AdaptiveCardFeedbackGenerator.GenerateWrongRouteCard();
+            }
             else
             {
                 var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind).GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);

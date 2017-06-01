@@ -16,7 +16,8 @@ namespace RouteHelpBot.Extensions
                 Route = RecognizeRoute(activity.Text),
                 Price = RecognizePrice(activity.Text),
                 VehicleKind = RecognizeVehicleKind(activity.Text),
-                Time = RecognizeTime(activity.Text)
+                Time = RecognizeTime(activity.Text),
+                KeyWord = RecognizeGreeting(activity.Text)
             };
             return recognizedUserRequest;
         }
@@ -76,6 +77,16 @@ namespace RouteHelpBot.Extensions
                     time = DateTime.Now.TimeOfDay;
             }
             return time;
+        }
+
+        private static string RecognizeGreeting(string activityText)
+        {
+            string greeting = null;
+            var greetingPhrases = new List<string>() { "Привет", "Здравствуй", "Добрый день", "Хай", "Ку", "Добрый вечер" };
+            var greetingPhrasesInRequest = greetingPhrases.Where(x => activityText.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) >= 0);
+            if (greetingPhrasesInRequest.Count() > 0)
+                greeting = "Приветствие";
+            return greeting;
         }
 
         private static TimeSpan? ProcessTime(string findedTime)
