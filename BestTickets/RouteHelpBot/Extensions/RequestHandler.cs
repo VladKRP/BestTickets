@@ -11,11 +11,11 @@ namespace RouteHelpBot.Extensions
         {
             AdaptiveCard card = new AdaptiveCard();
             if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
-            { 
+            {
                 if (request.KeyWord == "Приветствие")
-                    card = AdaptiveCardFeedbackGenerator.GenerateGreetingCard();
+                    card = AdaptiveCardFeedbackGenerator.GenerateTextCard(TextFeedbackGenerator.MakeGreetingFeedbackUntrivial());
                 else
-                    card = AdaptiveCardFeedbackGenerator.GenerateWrongRouteCard();
+                    card = AdaptiveCardFeedbackGenerator.GenerateTextCard(TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial());
             }
             else
             {
@@ -30,7 +30,12 @@ namespace RouteHelpBot.Extensions
         {
             string responseText;
             if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
-                responseText = TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial();
+            {
+                if (request.KeyWord == "Приветствие")
+                    responseText = TextFeedbackGenerator.MakeGreetingFeedbackUntrivial();
+                else
+                    responseText = TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial();
+            }        
             else
             {
                 var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind).GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);

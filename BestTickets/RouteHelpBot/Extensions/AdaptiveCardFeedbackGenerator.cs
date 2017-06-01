@@ -16,11 +16,11 @@ namespace RouteHelpBot.Extensions
                 foreach (var ticket in tickets)
                 {
                     var ticketName = string.Format($"{ticket.Name} {ticket.Route}");
-                    var ticketTimes = string.Format($"Отправление: {ticket.DepartureTime}\t\tПрибытие: {ticket.ArrivalTime}");     
+                    var ticketTimes = string.Format($"Отправление: {ticket.DepartureTime}\t\tПрибытие: {ticket.ArrivalTime}");
                     var cardElements = new List<CardElement>(){
                        CreateTextBlock(ticketName, TextSize.Large, TextWeight.Bolder, TextColor.Accent, HorizontalAlignment.Center),
                        CreateTextBlock(ticketTimes, TextSize.Medium, alignment:HorizontalAlignment.Center)};
-                    if(ticket.Places.Count() > 0)
+                    if (ticket.Places.Count() > 0)
                     {
                         var ticketPlacesInfo = ticket.Places.Select(x => string.Format($"{x.Type}\t\t{x.Cost}руб.\t\t{x.Amount}мест(а)"));
                         foreach (var place in ticketPlacesInfo)
@@ -34,40 +34,17 @@ namespace RouteHelpBot.Extensions
                 }
             }
             else
-                card = GenerateTicketsNotFoundCard();
-            
+                card = GenerateTextCard(TextFeedbackGenerator.MakeTicketsNotFoundFeedbackUntrivial());            
             return card;
         }
 
-        public static AdaptiveCard GenerateTicketsNotFoundCard()
+        public static AdaptiveCard GenerateTextCard(string textFeedback)
         {
             return new AdaptiveCard()
             {
                 Body = new List<CardElement>()
                 {
-                    CreateTextBlock(TextFeedbackGenerator.MakeTicketsNotFoundFeedbackUntrivial(), TextSize.Large)
-                }
-            };
-        }
-
-        public static AdaptiveCard GenerateWrongRouteCard()
-        {
-            return new AdaptiveCard()
-            {
-                Body = new List<CardElement>()
-                {
-                    CreateTextBlock(TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial(), TextSize.Large)
-                }
-            };
-        }
-
-        public static AdaptiveCard GenerateGreetingCard()
-        {
-            return new AdaptiveCard()
-            {
-                Body = new List<CardElement>()
-                {
-                    CreateTextBlock(TextFeedbackGenerator.MakeGreetingFeedbackUntrivial(), TextSize.Large)
+                    CreateTextBlock(textFeedback, TextSize.Large)
                 }
             };
         }

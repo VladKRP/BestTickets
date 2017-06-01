@@ -1,8 +1,4 @@
-﻿using AdaptiveCards;
-using BestTickets.Extensions;
-using BestTickets.Models;
-using BestTickets.Services;
-using RouteHelpBot.Model;
+﻿using BestTickets.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
