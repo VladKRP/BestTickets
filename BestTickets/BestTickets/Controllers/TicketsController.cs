@@ -28,6 +28,7 @@ namespace BestTickets.Controllers
             if (route.Date == null)
                 route.Date = route.SetCurrentDate();
 
+            var cities = CityChecker.GetCities();
             var tickets = TicketChecker.FindTickets(route);
             var averagePrice = tickets.GetAverageTicketsPrice();
             var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);

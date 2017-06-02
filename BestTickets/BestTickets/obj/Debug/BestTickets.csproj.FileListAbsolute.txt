@@ -216,3 +216,4 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Castle.Core.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
+D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
