@@ -11,8 +11,18 @@ namespace BestTickets.Extensions
     {
         public static string ParseSiteAsString(string url)
         {
-            var pageContent = new WebClient().DownloadData(url);
-            return Encoding.UTF8.GetString(pageContent);
+            string siteMarkup = null;
+            byte[] pageContent = null;
+            try
+            {
+                pageContent = new WebClient().DownloadData(url);
+                siteMarkup = Encoding.UTF8.GetString(pageContent);
+            }
+            catch (WebException exc) {
+                if(exc.Status == WebExceptionStatus.ConnectFailure)
+                    siteMarkup = "Service don't work yet.";                  
+            }   
+            return siteMarkup;
         }
 
         public static string SendPostRequest(string dataToSend, string url, string referer)

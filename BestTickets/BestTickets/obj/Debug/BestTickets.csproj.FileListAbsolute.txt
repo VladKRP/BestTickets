@@ -134,7 +134,6 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.AddKindpropertytoVehiclemodel.resources
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.AddKindpropertytoVehiclemodel.resources
-D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\BestTickets\BestTickets\BestTickets\bin\Castle.Core.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Moq.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Castle.Core.xml

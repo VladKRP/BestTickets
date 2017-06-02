@@ -7,6 +7,7 @@ namespace RouteHelpBot.Extensions
 {
     public class RequestHandler
     {
+
         public static AdaptiveCard HandleRequestAsAdaptiveCard(UserRequest request)
         {
             AdaptiveCard card = new AdaptiveCard();
@@ -35,7 +36,7 @@ namespace RouteHelpBot.Extensions
                     responseText = TextFeedbackGenerator.MakeGreetingFeedbackUntrivial();
                 else
                     responseText = TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial();
-            }        
+            }
             else
             {
                 var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind).GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);

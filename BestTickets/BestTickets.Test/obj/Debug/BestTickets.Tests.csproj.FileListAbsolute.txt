@@ -48,7 +48,6 @@ D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.xml
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.xml
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.xml
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\bin\Debug\ApplicationInsights.config
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\csc.exe
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll

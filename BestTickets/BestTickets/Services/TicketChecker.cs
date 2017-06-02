@@ -2,7 +2,6 @@
 using System.Linq;
 using BestTickets.Extensions;
 using BestTickets.Models;
-using System;
 
 namespace BestTickets.Services
 {
@@ -28,19 +27,25 @@ namespace BestTickets.Services
 
         public static IEnumerable<Vehicle> FindBusTickets(RouteViewModel route)
         {
+            IEnumerable<Vehicle> tickets = Enumerable.Empty<Vehicle>();
             string ticketBusUrl = "http://ticketbus.by/";
-            var ticketBusContent = Parser.ParseSiteAsString(ticketBusUrl);
-            var ticketBusPHPSessionId = ticketBusContent.Skip(ticketBusContent.IndexOf("var url")).Skip(11).TakeWhile(x => x != '"').Aggregate("", (x, y) => x += y);
-            var ticketBusTickets = TicketBusSearch(TicketBusGetData(route, ticketBusUrl, ticketBusPHPSessionId));
-            return ticketBusTickets;
+            var ticketBusContent = Parser.ParseSiteAsString(ticketBusUrl);    
+            if (ticketBusContent != "Service don't work yet.")
+            {
+                var ticketBusPHPSessionId = ticketBusContent.Skip(ticketBusContent.IndexOf("var url")).Skip(11).TakeWhile(x => x != '"').Aggregate("", (x, y) => x += y);
+                tickets = TicketBusSearch(TicketBusGetData(route, ticketBusUrl, ticketBusPHPSessionId));
+            }
+            return tickets ;
         }
 
         public static IEnumerable<Vehicle> FindTrainTickets(RouteViewModel route)
         {
-            string raspRwUrl = string.Format($"http://rasp.rw.by/ru/route/?from={route.DeparturePlace}&to={route.ArrivalPlace}&date={DateFormatChange(route.Date, "-", true)}");
+            IEnumerable<Vehicle> tickets = Enumerable.Empty<Vehicle>();
+            string raspRwUrl = string.Format($"http://rasp.rw.by/ru/route/?from={route.DeparturePlace}&to={route.ArrivalPlace}&date={DateFormatChange(route.Date, "-", true)}");     
             var raspRwContent = Parser.ParseSiteAsString(raspRwUrl);
-            var raspRwTickets = RaspRwSearch(raspRwContent);
-            return raspRwTickets;
+            if (raspRwContent != "Service don't work yet.")
+                tickets = RaspRwSearch(raspRwContent);
+            return tickets;
             
         }
 

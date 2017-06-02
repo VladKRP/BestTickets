@@ -15,19 +15,24 @@ namespace RouteHelpBot.Extensions
             {
                 feedbackMessage.Append($"Вот что я нашел по вашему запросу:\n ");
                 foreach (var ticket in tickets)
-                {
-                    feedbackMessage.Append($"---\n\r {ticket.Name} {ticket.Route} \n\r {ticket.Type}\n\r Отправление:{ticket.DepartureTime}\n\r Прибытие:{ticket.ArrivalTime}\n\r ");
-                    if (ticket.Places.Count() > 0)
-                    {
-                        feedbackMessage.Append($"Места:\n\r ");
-                        foreach (var place in ticket.Places)
-                            feedbackMessage.Append($"{place.Type}/ {place.Amount}/ {place.Cost} руб.\n\r ");
-                    }
-                }
+                    feedbackMessage.Append(GenerateTicketText(ticket));
             }
             else
                 feedbackMessage.Append(MakeTicketsNotFoundFeedbackUntrivial());
             return feedbackMessage.ToString();
+        }
+
+        private static string GenerateTicketText(Vehicle ticket)
+        {
+            var ticketInfo = new StringBuilder();
+            ticketInfo.Append($"---\n\r {ticket.Name} {ticket.Route} \n\r {ticket.Type}\n\r Отправление:{ticket.DepartureTime}\t\tПрибытие:{ticket.ArrivalTime}\n\r ");
+            if (ticket.Places.Count() > 0)
+            {
+                ticketInfo.Append($"Места:\n\r ");
+                foreach (var place in ticket.Places)
+                    ticketInfo.Append(string.Format("{0} {1}руб. {2}мест(а)\n\r ", place.Type, place.Cost, place.Amount));
+            }
+            return ticketInfo.ToString();
         }
 
         public static string MakeTicketsNotFoundFeedbackUntrivial()
