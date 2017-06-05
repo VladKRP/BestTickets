@@ -133,6 +133,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CitiesHandbook.mdf" />
+    <Content Include="App_Data\CitiesHandbook_log.ldf">
+      <DependentUpon>CitiesHandbook.mdf</DependentUpon>
+    </Content>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">

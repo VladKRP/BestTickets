@@ -4,7 +4,7 @@ namespace RouteHelpBot.Infrastructure
 {
     public class AppContext:DbContext
     {
-        public AppContext(): base("CityHandbook"){ }
+        public AppContext(): base("CitiesHandbook"){ }
 
         public DbSet<City> Cities { get; set; }
     }
