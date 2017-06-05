@@ -201,7 +201,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RouteRequest.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
-    <Compile Include="Services\CityChecker.cs" />
     <Compile Include="Services\TicketChecker.cs" />
     <Compile Include="Extensions\TicketCollectionExtension.cs" />
     <Compile Include="Models\Vehicle.cs" />

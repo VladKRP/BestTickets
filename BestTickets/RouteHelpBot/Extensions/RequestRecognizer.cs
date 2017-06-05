@@ -31,6 +31,11 @@ namespace RouteHelpBot.Extensions
             route.Date = route.SetCurrentDate();
             return route;      
         }
+
+        private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
+        {
+            return null;
+        }
         
         private static string RecognizeVehicleKind(string activityText)
         {
