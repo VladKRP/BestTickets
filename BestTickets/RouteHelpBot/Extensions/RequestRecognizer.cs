@@ -13,7 +13,7 @@ namespace RouteHelpBot.Extensions
         {
             UserRequest recognizedUserRequest = new UserRequest()
             {
-                Route = RecognizeRoute(activity.Text),
+                Route = RecognizeRouteDbIdentification(activity.Text),
                 Price = RecognizePrice(activity.Text),
                 VehicleKind = RecognizeVehicleKind(activity.Text),
                 Time = RecognizeTime(activity.Text),
@@ -22,22 +22,38 @@ namespace RouteHelpBot.Extensions
             return recognizedUserRequest;
         }
 
-        private static RouteViewModel RecognizeRoute(string activityText)
-        {
-            var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
-                .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);
-            var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);           
-            RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
-            route.Date = route.SetCurrentDate();
-            return route;      
-        }
+        //private static RouteViewModel RecognizeRoute(string activityText)
+        //{
+        //    var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
+        //        .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);
+        //    var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);           
+        //    RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
+        //    route.Date = route.SetCurrentDate();
+        //    return route;      
+        //}
 
         private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
         {
+            
             var context = new RouteHelpBot.DAL.CitiesContext();
-            var city = context.Cities.Where(x => x.Name == "Брест");
+            RouteViewModel route = new RouteViewModel();
             var requestText = activityText.Split(' ');
-            return null;
+            foreach(var word in requestText)
+            {
+                var city = context.Cities.AsEnumerable().Select(x => x.Name).Where(x => word.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) >= 0).FirstOrDefault();
+
+                if(!string.IsNullOrEmpty(city))
+                {
+                    if (route.DeparturePlace == null)
+                        route.DeparturePlace = city;
+                    else if (route.ArrivalPlace == null)
+                        route.ArrivalPlace = city;
+                    else
+                        break;
+                }
+            }
+            route.Date = route.SetCurrentDate();
+            return route;
         }
         
         private static string RecognizeVehicleKind(string activityText)
