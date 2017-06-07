@@ -25,7 +25,6 @@ D:\BestTickets\BestTickets\BestTickets\bin\Microsoft.AI.WindowsServer.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Microsoft.ApplicationInsights.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Microsoft.Web.Infrastructure.dll
-D:\BestTickets\BestTickets\BestTickets\bin\Newtonsoft.Json.dll
 D:\BestTickets\BestTickets\BestTickets\bin\System.Web.Helpers.dll
 D:\BestTickets\BestTickets\BestTickets\bin\System.Web.Mvc.dll
 D:\BestTickets\BestTickets\BestTickets\bin\System.Web.Optimization.dll
@@ -53,8 +52,6 @@ D:\BestTickets\BestTickets\BestTickets\bin\Antlr3.Runtime.pdb
 D:\BestTickets\BestTickets\BestTickets\bin\Newtonsoft.Json.xml
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.dll
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
-D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.dll
-D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.SqlServer.dll
 D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.xml
 D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.SqlServer.xml
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.InitializeDB.resources
@@ -135,9 +132,7 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.pdb
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.AddKindpropertytoVehiclemodel.resources
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.Migrations.AddKindpropertytoVehiclemodel.resources
 D:\BestTickets\BestTickets\BestTickets\bin\Castle.Core.dll
-D:\BestTickets\BestTickets\BestTickets\bin\Moq.dll
 D:\BestTickets\BestTickets\BestTickets\bin\Castle.Core.xml
-D:\BestTickets\BestTickets\BestTickets\bin\Moq.xml
 D:\Tickets\BestTickets\BestTickets\BestTickets\bin\ApplicationInsights.config
 D:\Tickets\BestTickets\BestTickets\BestTickets\bin\roslyn\csc.exe
 D:\Tickets\BestTickets\BestTickets\BestTickets\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -217,3 +212,8 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets\bin\Moq.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\Tickets\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
 D:\BestTickets\BestTickets\BestTickets\obj\Debug\BestTickets.csprojResolveAssemblyReference.cache
+D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.dll
+D:\BestTickets\BestTickets\BestTickets\bin\EntityFramework.SqlServer.dll
+D:\BestTickets\BestTickets\BestTickets\bin\Moq.dll
+D:\BestTickets\BestTickets\BestTickets\bin\Newtonsoft.Json.dll
+D:\BestTickets\BestTickets\BestTickets\bin\Moq.xml
