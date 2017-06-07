@@ -34,6 +34,9 @@ namespace RouteHelpBot.Extensions
 
         private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
         {
+            var context = new RouteHelpBot.DAL.CitiesContext();
+            var city = context.Cities.Where(x => x.Name == "Брест");
+            var requestText = activityText.Split(' ');
             return null;
         }
         

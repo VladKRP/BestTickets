@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Office.Interop.Excel;
 
 namespace RouteHelpBot.Extensions
@@ -14,12 +13,14 @@ namespace RouteHelpBot.Extensions
             return xlWorksheet.UsedRange;
         }
 
-        public static IEnumerable<Infrastructure.City> ExtractCities(Range range)
+        public static IEnumerable<Model.City> ExtractCities(Range range)
         {
             int rowCount = range.Rows.Count;
-            var cities = Enumerable.Range(1, rowCount).Where(x => range.Cells[x,2] != null && range.Cells[x,2].Value2 != null)
-                .Select(x => new Infrastructure.City { Id = x, Name = range.Cells[x, 2].Value2.ToString() } );
-            return cities;
+            for(int i = 2; i< rowCount; i++)
+            {
+                if (range.Cells[i, 2] != null && range.Cells[i, 2].Value2 != null)
+                    yield return new Model.City() { Id = i - 1, Name = range.Cells[i, 2].Value2.ToString() };
+            }
         }
 
     }
