@@ -7,13 +7,13 @@ namespace RouteHelpBot.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialDB : IMigrationMetadata
+    public sealed partial class CreateAndSeenDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateAndSeenDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706071134425_InitialDB"; }
+            get { return "201706080847591_CreateAndSeenDB"; }
         }
         
         string IMigrationMetadata.Source

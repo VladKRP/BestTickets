@@ -3,12 +3,12 @@ namespace RouteHelpBot.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialDB : DbMigration
+    public partial class CreateAndSeenDB : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.City",
+                "dbo.Cities",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -20,7 +20,7 @@ namespace RouteHelpBot.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.City");
+            DropTable("dbo.Cities");
         }
     }
 }

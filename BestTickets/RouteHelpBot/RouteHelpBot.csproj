@@ -192,13 +192,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DAL\CitiesContext.cs" />
-    <Compile Include="Migrations\201706071134425_InitialDB.cs" />
-    <Compile Include="Migrations\201706071134425_InitialDB.Designer.cs">
-      <DependentUpon>201706071134425_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706072057237_SeedTable.cs" />
-    <Compile Include="Migrations\201706072057237_SeedTable.Designer.cs">
-      <DependentUpon>201706072057237_SeedTable.cs</DependentUpon>
+    <Compile Include="Migrations\201706080847591_CreateAndSeenDB.cs" />
+    <Compile Include="Migrations\201706080847591_CreateAndSeenDB.Designer.cs">
+      <DependentUpon>201706080847591_CreateAndSeenDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\City.cs" />
@@ -229,11 +225,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706071134425_InitialDB.resx">
-      <DependentUpon>201706071134425_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706072057237_SeedTable.resx">
-      <DependentUpon>201706072057237_SeedTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706080847591_CreateAndSeenDB.resx">
+      <DependentUpon>201706080847591_CreateAndSeenDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

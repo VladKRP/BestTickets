@@ -147,5 +147,5 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.For
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.csprojResolveAssemblyReference.cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.pdb
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.dll
 D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll

@@ -7,42 +7,44 @@ using System.Linq;
 
 namespace RouteHelpBot.Extensions
 {
-    public static class  RequestRecognizer
+    public static class RequestRecognizer
     {
         public static UserRequest RecognizeUserRequest(Activity activity)
         {
-            UserRequest recognizedUserRequest = new UserRequest()
+            UserRequest recognizedUserRequest = null;
+            if (activity.Text != null)
             {
-                Route = RecognizeRouteDbIdentification(activity.Text),
-                Price = RecognizePrice(activity.Text),
-                VehicleKind = RecognizeVehicleKind(activity.Text),
-                Time = RecognizeTime(activity.Text),
-                KeyWord = RecognizeGreeting(activity.Text)
-            };
+                recognizedUserRequest = new UserRequest()
+                {
+                    KeyWord = RecognizeGreeting(activity.Text),
+                    Route = RecognizeRouteDbIdentification(activity.Text),
+                    Price = RecognizePrice(activity.Text),
+                    VehicleKind = RecognizeVehicleKind(activity.Text),
+                    Time = RecognizeTime(activity.Text)
+                };
+            }     
             return recognizedUserRequest;
         }
 
         //private static RouteViewModel RecognizeRoute(string activityText)
         //{
         //    var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
-        //        .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);
-        //    var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x,y) => x+=y);           
+        //        .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
+        //    var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
         //    RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
         //    route.Date = route.SetCurrentDate();
-        //    return route;      
+        //    return route;
         //}
 
         private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
         {
-            
             var context = new RouteHelpBot.DAL.CitiesContext();
             RouteViewModel route = new RouteViewModel();
-            var requestText = activityText.Split(' ');
-            foreach(var word in requestText)
+            var requestText = activityText.Split(' ',',','-',';');
+            foreach (var word in requestText)
             {
                 var city = context.Cities.AsEnumerable().Select(x => x.Name).Where(x => word.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) >= 0).FirstOrDefault();
-
-                if(!string.IsNullOrEmpty(city))
+                if (!string.IsNullOrEmpty(city))
                 {
                     if (route.DeparturePlace == null)
                         route.DeparturePlace = city;
@@ -55,11 +57,11 @@ namespace RouteHelpBot.Extensions
             route.Date = route.SetCurrentDate();
             return route;
         }
-        
+
         private static string RecognizeVehicleKind(string activityText)
         {
             string vehicleKind = null;
-            var isBus = activityText.IndexOf("автобус", StringComparison.CurrentCultureIgnoreCase) >= 0 || activityText.IndexOf("маршрутк",StringComparison.CurrentCultureIgnoreCase) >= 0;
+            var isBus = activityText.IndexOf("автобус", StringComparison.CurrentCultureIgnoreCase) >= 0 || activityText.IndexOf("маршрутк", StringComparison.CurrentCultureIgnoreCase) >= 0;
             if (isBus)
                 vehicleKind = "Маршрутка/Автобус";
             else
@@ -67,7 +69,7 @@ namespace RouteHelpBot.Extensions
                 var isTrain = activityText.IndexOf("поезд", StringComparison.CurrentCultureIgnoreCase) >= 0 || activityText.IndexOf("электричк", StringComparison.CurrentCultureIgnoreCase) >= 0;
                 if (isTrain)
                     vehicleKind = "Поезд/Электричка";
-            }      
+            }
             return vehicleKind;
         }
 
@@ -83,7 +85,7 @@ namespace RouteHelpBot.Extensions
                     price = price.Replace(',', '.');
                 if (!string.IsNullOrEmpty(price))
                     returningValue = double.Parse(price);
-            }   
+            }
             return returningValue;
         }
 
@@ -91,7 +93,7 @@ namespace RouteHelpBot.Extensions
         {
             TimeSpan? time = null;
             var findedTime = activityText.Where((x, i) => i > activityText.IndexOf(" на ", StringComparison.CurrentCultureIgnoreCase) + 3)
-                .TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("",(x,y) => x+=y);
+                .TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("", (x, y) => x += y);
             if (!string.IsNullOrEmpty(findedTime))
                 time = ProcessTime(findedTime);
             else

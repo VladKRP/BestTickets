@@ -30,7 +30,9 @@ namespace RouteHelpBot.Extensions
         public static string HandleRequestAsText(UserRequest request)
         {
             string responseText;
-            if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
+            if(request == null)
+                responseText = TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial();
+            else if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
             {
                 if (request.KeyWord == "Приветствие")
                     responseText = TextFeedbackGenerator.MakeGreetingFeedbackUntrivial();
