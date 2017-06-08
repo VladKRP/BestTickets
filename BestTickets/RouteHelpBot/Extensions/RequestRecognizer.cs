@@ -17,7 +17,7 @@ namespace RouteHelpBot.Extensions
                 recognizedUserRequest = new UserRequest()
                 {
                     KeyWord = RecognizeGreeting(activity.Text),
-                    Route = RecognizeRouteDbIdentification(activity.Text),
+                    Route = RecognizeRoute(activity.Text),
                     Price = RecognizePrice(activity.Text),
                     VehicleKind = RecognizeVehicleKind(activity.Text),
                     Time = RecognizeTime(activity.Text)
@@ -26,24 +26,33 @@ namespace RouteHelpBot.Extensions
             return recognizedUserRequest;
         }
 
-        //private static RouteViewModel RecognizeRoute(string activityText)
-        //{
-        //    var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
-        //        .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
-        //    var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
-        //    RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
-        //    route.Date = route.SetCurrentDate();
-        //    return route;
-        //}
+        private static RouteViewModel RecognizeRoute(string activityText)
+        {
+            var route = RecognizeRouteByKeywords(activityText);
+            if (string.IsNullOrEmpty(route.ArrivalPlace) || string.IsNullOrEmpty(route.DeparturePlace))
+                route = RecognizeRouteDbIdentification(activityText);
+            return route;
+        }
+
+        private static RouteViewModel RecognizeRouteByKeywords(string activityText)
+        {
+            var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
+                .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
+            var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
+            RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
+            route.Date = route.SetCurrentDate();
+            return route;
+        }
 
         private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
         {
             var context = new RouteHelpBot.DAL.CitiesContext();
             RouteViewModel route = new RouteViewModel();
-            var requestText = activityText.Split(' ',',','-',';');
+            var requestText = activityText.Split(' ', ',', '-', ';');
+            var cities = GenerateCitiesDictionary(context.Cities.Select(x => x));
             foreach (var word in requestText)
             {
-                var city = context.Cities.AsEnumerable().Select(x => x.Name).Where(x => word.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) >= 0).FirstOrDefault();
+                var city = cities.Where(x => word.IndexOf(x.Value, StringComparison.CurrentCultureIgnoreCase) >= 0).Select(x => x.Value).FirstOrDefault();
                 if (!string.IsNullOrEmpty(city))
                 {
                     if (route.DeparturePlace == null)
@@ -56,6 +65,15 @@ namespace RouteHelpBot.Extensions
             }
             route.Date = route.SetCurrentDate();
             return route;
+        }
+
+        private static Dictionary<int,string> GenerateCitiesDictionary(IEnumerable<City> cities)
+        {
+            Dictionary<int, string> cityDictionary = new Dictionary<int, string>();
+            foreach (var city in cities)
+                cityDictionary.Add(city.Id, city.Name);
+            return cityDictionary;           
+
         }
 
         private static string RecognizeVehicleKind(string activityText)
@@ -81,10 +99,12 @@ namespace RouteHelpBot.Extensions
             if (!string.IsNullOrEmpty(searchPhrase))
             {
                 var price = activityText.Where((x, i) => i > activityText.IndexOf(searchPhrase) + searchPhrase.Length - 1).TakeWhile(x => char.IsDigit(x) || char.IsPunctuation(x)).Aggregate("", (x, y) => x += y);
-                if (price.Contains(','))
-                    price = price.Replace(',', '.');
                 if (!string.IsNullOrEmpty(price))
+                {
+                    if (price.Contains(','))
+                        price = price.Replace(',', '.');
                     returningValue = double.Parse(price);
+                }      
             }
             return returningValue;
         }
@@ -118,7 +138,7 @@ namespace RouteHelpBot.Extensions
         private static TimeSpan? ProcessTime(string findedTime)
         {
             TimeSpan? time = null;
-            var tempTime = findedTime.Split(':', '-', '.');
+            var tempTime = findedTime.Split(':', '-');
             if (tempTime.Length > 1)
                 time = new TimeSpan(int.Parse(tempTime[0]), int.Parse(tempTime[1]), 0);
             else

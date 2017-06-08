@@ -11,6 +11,8 @@ namespace RouteHelpBot.Extensions
         public static AdaptiveCard HandleRequestAsAdaptiveCard(UserRequest request)
         {
             AdaptiveCard card = new AdaptiveCard();
+            if (request == null)
+                card = AdaptiveCardFeedbackGenerator.GenerateTextCard(TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial());
             if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
             {
                 if (request.KeyWord == "Приветствие")
@@ -46,5 +48,7 @@ namespace RouteHelpBot.Extensions
             }
             return responseText;
         }
+
+
     }
 }
