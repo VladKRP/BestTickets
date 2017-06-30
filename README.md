@@ -3,7 +3,7 @@
 
 <h3>How it works</h3>
 <ol>
-  <li><img src="https://github.com/VladKRP/BestTickets/blob/master/BestTickets/Pics/howto.gif"/></li>
+  <li>Workflow<img src="https://github.com/VladKRP/BestTickets/blob/master/BestTickets/Pics/howto.gif"/></li>
   <li>Main page has fields to input route data.Below it shown most frequent routes.</br>
   <img src="https://github.com/VladKRP/BestTickets/blob/master/BestTickets/Pics/main_page.png"/>
   </li>
