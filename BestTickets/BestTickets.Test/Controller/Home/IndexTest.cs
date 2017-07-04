@@ -10,7 +10,6 @@ namespace BestTickets.Tests.Controller.Home
         private HomeController controller;
         private ViewResult result;
 
-
         [TestInitialize]
         public void InitialSetups()
         {
@@ -19,13 +18,13 @@ namespace BestTickets.Tests.Controller.Home
         }
 
         [TestMethod]
-        public void IndexIsNotNull()
+        public void Index_IsNotNull()
         {
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void IndexReturnIndexView()
+        public void Index_ReturnIndexView()
         {
             Assert.AreEqual("Index", result.ViewName);
         }

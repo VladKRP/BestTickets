@@ -117,7 +117,6 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Microsoft.Web.Infrastructure.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Helpers.dll
-D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Mvc.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Razor.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.WebPages.Deployment.dll
