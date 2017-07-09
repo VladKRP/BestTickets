@@ -22,7 +22,8 @@ namespace RouteHelpBot.Extensions
             }
             else
             {
-                var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind).GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
+                var tickets = new TicketsFactory().GetTicketsByVehicleKind(request.VehicleKind).SearchTickets(request.Route)
+                                                .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
                 card = AdaptiveCardFeedbackGenerator.GenerateTicketsCard(tickets);
             }
 
@@ -43,7 +44,8 @@ namespace RouteHelpBot.Extensions
             }
             else
             {
-                var tickets = TicketChecker.GetByVehicleKind(request.Route, request.VehicleKind).GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
+                var tickets = new TicketsFactory().GetTicketsByVehicleKind(request.VehicleKind).SearchTickets(request.Route)
+                                                                .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
                 responseText = TextFeedbackGenerator.GenerateTicketsFeedbackMessage(tickets);
             }
             return responseText;

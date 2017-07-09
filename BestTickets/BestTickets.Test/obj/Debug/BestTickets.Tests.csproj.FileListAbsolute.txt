@@ -96,6 +96,9 @@ D:\Tickets\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Fo
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.csprojResolveAssemblyReference.cache
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.dll
 D:\Tickets\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.pdb
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
+D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll
+D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.csprojResolveAssemblyReference.cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\ApplicationInsights.config
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\csc.exe
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -112,6 +115,7 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\roslyn\VBCSCompiler
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.Tests.dll.config
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.Tests.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.Tests.pdb
+D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTicket.Domain.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -128,10 +132,10 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\EntityFramework.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTickets.pdb
+D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\BestTicket.Domain.pdb
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Castle.Core.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Moq.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Helpers.xml
-D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Mvc.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Razor.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.WebPages.xml
@@ -143,8 +147,5 @@ D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\HtmlAgilityPack.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\EntityFramework.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.WebHost.xml
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Net.Http.Formatting.xml
-D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.csprojResolveAssemblyReference.cache
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.dll
 D:\MyRepo\BestTickets\BestTickets\BestTickets.Test\obj\Debug\BestTickets.Tests.pdb
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\System.Web.Http.xml
-D:\BestTickets\BestTickets\BestTickets.Test\bin\Debug\Newtonsoft.Json.dll

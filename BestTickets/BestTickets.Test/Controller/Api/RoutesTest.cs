@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BestTickets.Models;
 using BestTickets.Controllers;
-using BestTickets.Infrastructure;
+using BestTickets.Domain.Abstractions;
 using System.Linq;
 using Moq;
+using BestTickets.Domain.Models;
 
 namespace BestTickets.Tests.Controller.Api
 {
@@ -52,20 +52,19 @@ namespace BestTickets.Tests.Controller.Api
 
         private IEnumerable<RouteRequest> GetRoutes()
         {
-
             var requestedRoutes = new List<RouteRequest>()
             {
-                new RouteRequest() {Id = 1, Route = new RouteViewModel("Брест","Минск",""), RequestsCount = 20},
-                new RouteRequest() {Id = 2, Route = new RouteViewModel("Минск","Молодечно",""), RequestsCount = 17},
-                new RouteRequest() {Id = 3, Route = new RouteViewModel("Гродно","Витебск",""), RequestsCount = 3},
-                new RouteRequest() {Id = 4, Route = new RouteViewModel("Брест","Ольшаны",""), RequestsCount = 1},
-                new RouteRequest() {Id = 5, Route = new RouteViewModel("Москва","Минск",""), RequestsCount = 10},
-                new RouteRequest() {Id = 6, Route = new RouteViewModel("Кобрин","Брест",""), RequestsCount = 660},
-                new RouteRequest() {Id = 7, Route = new RouteViewModel("Гомель","Могилев",""), RequestsCount = 70},
-                new RouteRequest() {Id = 8, Route = new RouteViewModel("Москва","Брест",""), RequestsCount = 10},
-                new RouteRequest() {Id = 9, Route = new RouteViewModel("Пинск","Брест",""), RequestsCount = 50},
-                new RouteRequest() {Id = 10, Route = new RouteViewModel("Брест","Минск",""), RequestsCount = 10},
-                new RouteRequest() {Id = 11, Route = new RouteViewModel("Брест","Кобрин",""), RequestsCount = 5}
+                new RouteRequest() {Id = 1, Route = new Route("Брест","Минск", null), RequestsCount = 20},
+                new RouteRequest() {Id = 2, Route = new Route("Минск","Молодечно", null), RequestsCount = 17},
+                new RouteRequest() {Id = 3, Route = new Route("Гродно","Витебск",null), RequestsCount = 3},
+                new RouteRequest() {Id = 4, Route = new Route("Брест","Ольшаны",null), RequestsCount = 1},
+                new RouteRequest() {Id = 5, Route = new Route("Москва","Минск",null), RequestsCount = 10},
+                new RouteRequest() {Id = 6, Route = new Route("Кобрин","Брест",null), RequestsCount = 660},
+                new RouteRequest() {Id = 7, Route = new Route("Гомель","Могилев",null), RequestsCount = 70},
+                new RouteRequest() {Id = 8, Route = new Route("Москва","Брест",null), RequestsCount = 10},
+                new RouteRequest() {Id = 9, Route = new Route("Пинск","Брест",null), RequestsCount = 50},
+                new RouteRequest() {Id = 10, Route = new Route("Брест","Минск",null), RequestsCount = 10},
+                new RouteRequest() {Id = 11, Route = new Route("Брест","Кобрин",null), RequestsCount = 5}
             };
             return requestedRoutes;
         }
