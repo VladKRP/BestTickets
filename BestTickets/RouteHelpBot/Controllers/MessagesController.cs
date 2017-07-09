@@ -9,7 +9,7 @@ using AdaptiveCards;
 
 namespace RouteHelpBot
 {
-    [BotAuthentication]
+    //[BotAuthentication]
     public class MessagesController : ApiController
     {
 

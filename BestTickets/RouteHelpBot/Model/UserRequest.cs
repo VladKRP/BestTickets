@@ -1,11 +1,11 @@
-﻿using BestTickets.Models;
-using System;
+﻿using System;
+using BestTickets.Domain.Models;
 
 namespace RouteHelpBot.Model
 {
     public class UserRequest
     {
-        public RouteViewModel Route { get; set; }
+        public Route Route { get; set; }
         public string VehicleKind { get; set; } = null;
         public TimeSpan? Time { get; set; } = null;
         public double? Price { get; set; } = null;
@@ -17,7 +17,7 @@ namespace RouteHelpBot.Model
             Route = null;
         }
 
-        public UserRequest(RouteViewModel route, string vehicleKind = null, TimeSpan? time = null, double? price = null, string keyWord = null)
+        public UserRequest(Route route, string vehicleKind = null, TimeSpan? time = null, double? price = null, string keyWord = null)
         {
             Route = route;
             VehicleKind = vehicleKind;

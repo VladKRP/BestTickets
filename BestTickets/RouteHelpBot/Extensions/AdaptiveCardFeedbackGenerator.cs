@@ -1,5 +1,5 @@
 ﻿using AdaptiveCards;
-using BestTickets.Models;
+using BestTickets.Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
 

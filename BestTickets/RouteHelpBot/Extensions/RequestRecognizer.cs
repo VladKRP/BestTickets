@@ -1,4 +1,4 @@
-﻿using BestTickets.Models;
+﻿using BestTickets.Domain.Models;
 using Microsoft.Bot.Connector;
 using RouteHelpBot.Model;
 using System;
@@ -26,7 +26,7 @@ namespace RouteHelpBot.Extensions
             return recognizedUserRequest;
         }
 
-        private static RouteViewModel RecognizeRoute(string activityText)
+        private static Route RecognizeRoute(string activityText)
         {
             var route = RecognizeRouteByKeywords(activityText);
             if (string.IsNullOrEmpty(route.ArrivalPlace) || string.IsNullOrEmpty(route.DeparturePlace))
@@ -34,20 +34,19 @@ namespace RouteHelpBot.Extensions
             return route;
         }
 
-        private static RouteViewModel RecognizeRouteByKeywords(string activityText)
+        private static Route RecognizeRouteByKeywords(string activityText)
         {
             var departurePlace = activityText.Where((x, i) => i > activityText.IndexOf(" из ", StringComparison.CurrentCultureIgnoreCase) + 3 && i < activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) - 1)
                 .TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
             var arrivalPlace = activityText.Where((x, i) => i > activityText.IndexOf(" в ", StringComparison.CurrentCultureIgnoreCase) + 2).TakeWhile(x => char.IsLetter(x)).Aggregate("", (x, y) => x += y);
-            RouteViewModel route = new RouteViewModel(departurePlace, arrivalPlace, null);
-            route.Date = route.SetCurrentDate();
+            Route route = new Route(departurePlace, arrivalPlace, DateTime.Now);
             return route;
         }
 
-        private static RouteViewModel RecognizeRouteDbIdentification(string activityText)
+        private static Route RecognizeRouteDbIdentification(string activityText)
         {
             var context = new RouteHelpBot.DAL.CitiesContext();
-            RouteViewModel route = new RouteViewModel();
+            Route route = new Route();
             var requestText = activityText.Split(' ', ',', '-', ';');
             var cities = GenerateCitiesDictionary(context.Cities.Select(x => x));
             foreach (var word in requestText)
@@ -63,7 +62,7 @@ namespace RouteHelpBot.Extensions
                         break;
                 }
             }
-            route.Date = route.SetCurrentDate();
+            route.Date = DateTime.Now;
             return route;
         }
 
