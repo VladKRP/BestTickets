@@ -1,12 +1,13 @@
 ﻿using BestTickets.Attributes;
 using BestTickets.Extensions;
-using BestTickets.Infrastructure;
-using BestTickets.Models;
 using BestTickets.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using System.Web.Mvc;
+using BestTickets.Domain.Models;
+using BestTickets.Domain.Abstractions;
+using BestTickets.Infrastructure;
+using System;
 
 namespace BestTickets.Controllers
 {
@@ -25,22 +26,21 @@ namespace BestTickets.Controllers
         }
 
         [WebApiCache(Duration = 30)]
-        public IEnumerable<Vehicle> GetTickets([FromUri]RouteViewModel route)
+        public IEnumerable<Vehicle> GetTickets([FromUri]Route route)
         {
-            if (route.Date == null)
-                route.Date = route.SetCurrentDate();
-
-            var tickets = TicketChecker.FindTickets(route);
+            if (route.Date.Value.Ticks == 0)
+                route.Date = DateTime.Now;
+            var tickets = new RaspRwTicketsFinder().SearchTickets(route).Concat(new TicketBusTicketsFinder().SearchTickets(route));
             var averagePrice = tickets.GetAverageTicketsPrice();
             var groupedTickets = tickets.GroupTicketsByAveragePrice(averagePrice);
-            if(tickets.Count() != 0)
+            if (tickets.Count() != 0)
                 UpdateOrCreateRouteIfNotExist(route);
             return groupedTickets;
         }
 
-        private void UpdateOrCreateRouteIfNotExist(RouteViewModel route)
+        private void UpdateOrCreateRouteIfNotExist(Route route)
         {
-            var routeRequest = context.FindByRoute(route);
+            var routeRequest = context.GetByRoute(route);
             if (routeRequest != null)
             {
                 routeRequest.RequestsCount++;

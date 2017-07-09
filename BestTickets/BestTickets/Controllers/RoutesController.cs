@@ -1,5 +1,6 @@
-﻿using BestTickets.Infrastructure;
-using BestTickets.Models;
+﻿using BestTickets.Domain.Abstractions;
+using BestTickets.Domain.Models;
+using BestTickets.Infrastructure;
 using System.Linq;
 using System.Web.Http;
 
@@ -19,10 +20,6 @@ namespace BestTickets.Controllers
             _context = repo;
         }
 
-        public IQueryable<RouteViewModel> GetTop10Routes()
-        {
-            var top10Requests = _context.GetTop10().Select(x => x.Route);
-            return top10Requests;
-        }
+        public IQueryable<Route> GetTop10Routes() => _context.GetTop10().Select(x => x.Route);
     }
 }
