@@ -24,7 +24,11 @@ namespace RouteHelpBot.Extensions
             }
             else
             {
+<<<<<<< HEAD:BestTickets.Web/RouteHelpBot/Extensions/RequestHandler.cs
                 var tickets = new TicketsFactory().GetTicketFinder(request.VehicleKind).SearchTickets(request.Route)
+=======
+                var tickets = new TicketsFactory().GetTicketsByVehicleKind(request.VehicleKind).SearchTickets(request.Route)
+>>>>>>> eb381e900aba17531816f3127b793c6acebddf49:BestTickets/RouteHelpBot/Extensions/RequestHandler.cs
                                                 .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
                 card = AdaptiveCardFeedbackGenerator.GenerateTicketsCard(tickets);
             }
@@ -46,8 +50,13 @@ namespace RouteHelpBot.Extensions
             }
             else
             {
+<<<<<<< HEAD:BestTickets.Web/RouteHelpBot/Extensions/RequestHandler.cs
                 var tickets = new TicketsFactory().GetTicketFinder(request.VehicleKind).SearchTickets(request.Route)
                                                   .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
+=======
+                var tickets = new TicketsFactory().GetTicketsByVehicleKind(request.VehicleKind).SearchTickets(request.Route)
+                                                                .GetTicketsByPrice(request.Price).GetTicketsByTimeOrNearest(request.Time);
+>>>>>>> eb381e900aba17531816f3127b793c6acebddf49:BestTickets/RouteHelpBot/Extensions/RequestHandler.cs
                 responseText = TextFeedbackGenerator.GenerateTicketsFeedbackMessage(tickets);
             }
             return responseText;

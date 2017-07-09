@@ -1,5 +1,10 @@
+<<<<<<< HEAD:BestTickets.Web/RouteHelpBot/Model/UserRequest.cs
 ﻿using BestTickets.Domain.Models;
 using System;
+=======
+﻿using System;
+using BestTickets.Domain.Models;
+>>>>>>> eb381e900aba17531816f3127b793c6acebddf49:BestTickets/RouteHelpBot/Model/UserRequest.cs
 
 namespace RouteHelpBot.Model
 {

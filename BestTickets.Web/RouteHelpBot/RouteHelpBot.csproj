@@ -217,6 +217,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BestTicket.Domain\BestTickets.Domain.csproj">
+      <Project>{03792C4E-B623-427E-9F05-F9DDB99149F9}</Project>
+      <Name>BestTickets.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BestTickets\BestTickets.csproj">
       <Project>{b9eec781-349a-435c-a913-cf6f6c3878be}</Project>
       <Name>BestTickets</Name>
