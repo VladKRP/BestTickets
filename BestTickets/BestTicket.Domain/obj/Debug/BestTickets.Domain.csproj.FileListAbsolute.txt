@@ -1,0 +1,5 @@
+D:\MyRepo\BestTickets\BestTickets\BestTicket.Domain\bin\Debug\BestTicket.Domain.dll
+D:\MyRepo\BestTickets\BestTickets\BestTicket.Domain\bin\Debug\BestTicket.Domain.pdb
+D:\MyRepo\BestTickets\BestTickets\BestTicket.Domain\obj\Debug\BestTicket.Domain.dll
+D:\MyRepo\BestTickets\BestTickets\BestTicket.Domain\obj\Debug\BestTicket.Domain.pdb
+D:\MyRepo\BestTickets\BestTickets\BestTicket.Domain\obj\Debug\BestTickets.Domain.csprojResolveAssemblyReference.cache
