@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BestTickets.Models;
+using BestTickets.Domain.Models;
 using System;
 
 namespace BestTickets.Extensions
