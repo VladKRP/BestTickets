@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
-using BestTickets.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using BestTickets.Domain.Models;
 
 namespace BestTickets.Infrastructure
 {
