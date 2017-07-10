@@ -62,6 +62,10 @@
       <HintPath>..\packages\Chronic.Signed.0.3.2\lib\net40\Chronic.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -136,6 +140,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CitiesHandbook.mdf" />
+    <Content Include="App_Data\CitiesHandbook_log.ldf">
+      <DependentUpon>CitiesHandbook.mdf</DependentUpon>
+    </Content>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -145,21 +153,18 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="DAL\CitiesContext.cs" />
+    <Compile Include="DAL\CitiesDictionary.cs" />
+    <Compile Include="DAL\DapperCityRepository.cs" />
+    <Compile Include="DAL\ICityRepository.cs" />
     <Compile Include="Extensions\AdaptiveCardFeedbackGenerator.cs" />
-    <Compile Include="DAL\CityHandbookGenerator.cs" />
+    <Compile Include="DAL\CityHandbookExcelParser.cs" />
     <Compile Include="Extensions\IFeedbackGenerator.cs" />
-    <Compile Include="Extensions\RequestHandler.cs" />
+    <Compile Include="BLL\ResponseFactory.cs" />
     <Compile Include="BLL\RequestRecognizer.cs" />
     <Compile Include="Extensions\TextFeedbackGenerator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707091231507_SeedCityDB.cs" />
-    <Compile Include="Migrations\201707091231507_SeedCityDB.Designer.cs">
-      <DependentUpon>201707091231507_SeedCityDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\UserRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,14 +179,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707091231507_SeedCityDB.resx">
-      <DependentUpon>201707091231507_SeedCityDB.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,20 +1,21 @@
 ﻿using AdaptiveCards;
 using BestTickets.Extensions;
 using BestTickets.Services;
+using RouteHelpBot.Extensions;
 using RouteHelpBot.Model;
 
 
-namespace RouteHelpBot.Extensions
+namespace RouteHelpBot.BLL
 {
-    public class RequestHandler
+    public class ResponseFactory
     {
 
-        public static AdaptiveCard HandleRequestAsAdaptiveCard(UserRequest request)
+        public static AdaptiveCard CreateResponseAsAdaptiveCard(UserRequest request)
         {
             AdaptiveCard card = new AdaptiveCard();
             if (request == null)
                 card = AdaptiveCardFeedbackGenerator.GenerateTextCard(TextFeedbackGenerator.MakeWrongRouteFeedbackUntrivial());
-            if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
+            else if (string.IsNullOrEmpty(request.Route.ArrivalPlace) || string.IsNullOrEmpty(request.Route.DeparturePlace))
             {
                 if (request.KeyWord == "Приветствие")
                     card = AdaptiveCardFeedbackGenerator.GenerateTextCard(TextFeedbackGenerator.MakeGreetingFeedbackUntrivial());
@@ -31,7 +32,7 @@ namespace RouteHelpBot.Extensions
             return card;
         }
 
-        public static string HandleRequestAsText(UserRequest request)
+        public static string CreateResponseAsText(UserRequest request)
         {
             string responseText;
             if(request == null)

@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Connector;
-using RouteHelpBot.Extensions;
 using RouteHelpBot.BLL;
 using AdaptiveCards;
 
@@ -14,7 +13,6 @@ namespace RouteHelpBot
     [BotAuthentication]
     public class MessagesController : ApiController
     {
-
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
             if (activity.Type == ActivityTypes.Message)
@@ -22,7 +20,7 @@ namespace RouteHelpBot
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
                 ///*Text feedback*/
-                var feedback = RequestHandler.HandleRequestAsText(RequestRecognizer.RecognizeUserRequest(activity));
+                var feedback = ResponseFactory.CreateResponseAsText(RequestRecognizer.RecognizeUserRequest(activity));
                 Activity reply = activity.CreateReply(feedback);
 
                 /*AdaptiveCard feedback*/
@@ -30,7 +28,7 @@ namespace RouteHelpBot
                 //reply.Attachments.Add(new Attachment()
                 //{
                 //    ContentType = AdaptiveCard.ContentType,
-                //    Content = RequestHandler.HandleRequestAsAdaptiveCard(RequestRecognizer.RecognizeUserRequest(activity))
+                //    Content = ResponseFactory.CreateResponseAsAdaptiveCard(RequestRecognizer.RecognizeUserRequest(activity))
                 //});
 
                 await connector.Conversations.ReplyToActivityAsync(reply);

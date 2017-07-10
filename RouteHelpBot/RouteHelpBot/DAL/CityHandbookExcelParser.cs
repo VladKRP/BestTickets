@@ -3,7 +3,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace RouteHelpBot.DAL
 {
-    public static class CityHandbookGenerator
+    public static class CityHandbookExcelParser
     {
         public static Range ExtractExcelFile(string fileName, string tableName)
         {
