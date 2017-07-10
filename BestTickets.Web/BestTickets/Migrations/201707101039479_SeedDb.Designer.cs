@@ -6,14 +6,14 @@ namespace BestTickets.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class AddKindpropertytoVehiclemodel : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class SeedDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddKindpropertytoVehiclemodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705221705548_Add 'Kind' property to Vehicle model"; }
+            get { return "201707101039479_SeedDb"; }
         }
         
         string IMigrationMetadata.Source

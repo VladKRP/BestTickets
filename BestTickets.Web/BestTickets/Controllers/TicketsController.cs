@@ -17,7 +17,7 @@ namespace BestTickets.Controllers
 
         public TicketsController()
         {
-            context = new RouteRequestRepository();
+            context = new EFRouteRequestRepository();
         }
 
         public TicketsController(IRouteRequestRepository repo)

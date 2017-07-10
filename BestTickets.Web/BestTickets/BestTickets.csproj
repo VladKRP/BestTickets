@@ -44,12 +44,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BestTickets.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\BestTickets.Domain.dll</HintPath>
+    <Reference Include="BestTickets.Domain">
+      <HintPath>..\packages\BestTickets.Domain\BestTickets.Domain.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -190,22 +193,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Extensions\HtmlHandler.cs" />
-    <Compile Include="Infrastructure\RouteRequestRepository.cs" />
-    <Compile Include="Migrations\201705021317566_InitializeDB.cs" />
-    <Compile Include="Migrations\201705021317566_InitializeDB.Designer.cs">
-      <DependentUpon>201705021317566_InitializeDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.cs" />
-    <Compile Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.Designer.cs">
-      <DependentUpon>201705221705548_Add %27Kind%27 property to Vehicle model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707082236236_Change Date field of Route to DateTime format.cs" />
-    <Compile Include="Migrations\201707082236236_Change Date field of Route to DateTime format.Designer.cs">
-      <DependentUpon>201707082236236_Change Date field of Route to DateTime format.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707082308000_MakeDateFieldNullable.cs" />
-    <Compile Include="Migrations\201707082308000_MakeDateFieldNullable.Designer.cs">
-      <DependentUpon>201707082308000_MakeDateFieldNullable.cs</DependentUpon>
+    <Compile Include="Infrastructure\EFRouteRequestRepository.cs" />
+    <Compile Include="Migrations\201707101039479_SeedDb.cs" />
+    <Compile Include="Migrations\201707101039479_SeedDb.Designer.cs">
+      <DependentUpon>201707101039479_SeedDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\IHtmlTicketsFinder.cs" />
@@ -316,17 +307,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705021317566_InitializeDB.resx">
-      <DependentUpon>201705021317566_InitializeDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705221705548_Add %27Kind%27 property to Vehicle model.resx">
-      <DependentUpon>201705221705548_Add %27Kind%27 property to Vehicle model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707082236236_Change Date field of Route to DateTime format.resx">
-      <DependentUpon>201707082236236_Change Date field of Route to DateTime format.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707082308000_MakeDateFieldNullable.resx">
-      <DependentUpon>201707082308000_MakeDateFieldNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707101039479_SeedDb.resx">
+      <DependentUpon>201707101039479_SeedDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

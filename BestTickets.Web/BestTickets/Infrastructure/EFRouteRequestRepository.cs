@@ -5,16 +5,16 @@ using BestTickets.Domain.Abstractions;
 
 namespace BestTickets.Infrastructure
 {
-    public class RouteRequestRepository:IRouteRequestRepository
+    public class EFRouteRequestRepository:IRouteRequestRepository
     {
         private RouteRequestContext context;
 
-        public RouteRequestRepository()
+        public EFRouteRequestRepository()
         {
             context = new RouteRequestContext();
         }
 
-        public RouteRequestRepository(RouteRequestContext context)
+        public EFRouteRequestRepository(RouteRequestContext context)
         {
             this.context = context;
         }

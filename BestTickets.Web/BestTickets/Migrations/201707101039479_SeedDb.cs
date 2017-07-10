@@ -3,7 +3,7 @@ namespace BestTickets.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitializeDB : DbMigration
+    public partial class SeedDb : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,7 @@ namespace BestTickets.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Route_DeparturePlace = c.String(nullable: false),
                         Route_ArrivalPlace = c.String(nullable: false),
-                        Route_Date = c.String(nullable: false),
+                        Route_Date = c.DateTime(nullable: false),
                         RequestsCount = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

@@ -12,7 +12,7 @@ namespace BestTickets.Controllers
 
         public RoutesController()
         {
-            _context = new RouteRequestRepository();
+            _context = new EFRouteRequestRepository();
         }
 
         public RoutesController(IRouteRequestRepository repo)
